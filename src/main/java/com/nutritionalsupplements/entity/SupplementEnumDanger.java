@@ -1,9 +1,10 @@
 package com.nutritionalsupplements.entity;
 
 public enum SupplementEnumDanger {
-    DANGER1("DANGER1"), //змінити
-    DANGER2("DANGER2"), //змінити
-    DANGER3("DANGER3"); //змінити
+    VERY_LOW("Очень низкая"),
+    LOW("Низкая"),
+    MIDDLE("Средняя"),
+    HIGH("Высокая");
 
     SupplementEnumDanger(String description) {
         this.description = description;
