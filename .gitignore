@@ -23,3 +23,9 @@
 /nbdist/
 /.nb-gradle/
 /build/
+
+#Visual Studio
+.vs
+
+#Maven cache
+.mvn
