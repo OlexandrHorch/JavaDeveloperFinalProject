@@ -1,12 +1,12 @@
 package com.nutritionalsupplements.entity;
 
-public enum SupplementEnumDanger {
-    VERY_LOW("Очень низкая"),
-    LOW("Низкая"),
-    MIDDLE("Средняя"),
-    HIGH("Высокая");
+public enum SupplementDanger {
+    very_low("Очень низкая"),
+    low("Низкая"),
+    middle("Средняя"),
+    high("Высокая");
 
-    SupplementEnumDanger(String description) {
+    SupplementDanger(String description) {
         this.description = description;
     }
 
