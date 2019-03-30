@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface ProductService {
+public class ProductServiceImpl {
+    @Autowired
+    private ProductRepository productRepository;
 
 
 
