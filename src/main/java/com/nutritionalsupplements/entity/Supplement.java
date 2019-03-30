@@ -6,15 +6,26 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "supplements")
+@Table(name = "supplement")
 public class Supplement {
 
     @Id
     @Column(name = "id")
     private long id;
 
+/*
+Чи потрібно розділити "name" = "Е100 – Куркумины"
+на "short_name" = "Е100"
+та "name" = "Куркумины"
+
+    @Column(name = "short_name")
+    private String shortName;
+*/
     @Column(name = "name")
     private String name;
+
+    @Column(name = "other_names")
+    private String other_names;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "category")
@@ -28,8 +39,8 @@ public class Supplement {
     @Column(name = "origin")
     private SupplementOrigin Origin;
 
-    @Column(name = "using")
-    private String using;
+    @Column(name = "using_info")
+    private String using_info;
 
     @Column(name = "harm")
     private String harm;
