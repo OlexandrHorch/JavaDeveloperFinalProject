@@ -1,12 +1,19 @@
 package com.nutritionalsupplements.service;
 
-import com.nutritionalsupplements.repository.SupplementRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.nutritionalsupplements.entity.Supplement;
 
-@Service
-public class SupplementService {
-    @Autowired
-    private SupplementRepository supplementRepository;
+import java.util.List;
+
+public interface SupplementService {
+
+    Supplement getSupplement(Long id);
+
+    void saveSupplement(Supplement supplement);
+
+    List<Supplement> getSupplements();
+
+    void updateSupplement(Supplement supplement);
+
+    void removeSupplement(Supplement supplement);
 
 }
