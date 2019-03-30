@@ -18,15 +18,15 @@ public class Supplement {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "category")
-    private SupplementEnumCategory Category = SupplementEnumCategory.ANTIOXIDANTS;
+    private SupplementCategory Category;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "danger")
-    private SupplementEnumDanger Danger = SupplementEnumDanger.VERY_LOW;
+    private SupplementDanger Danger;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "origin")
-    private SupplementEnumOrigin Origin = SupplementEnumOrigin.ANIMAL;
+    private SupplementOrigin Origin;
 
     @Column(name = "using")
     private String using;

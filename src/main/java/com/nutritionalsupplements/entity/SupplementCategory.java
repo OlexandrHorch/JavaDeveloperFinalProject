@@ -1,12 +1,13 @@
 package com.nutritionalsupplements.entity;
 
-public enum SupplementEnumCategory {
-    ANTIOXIDANTS("Антиоксиданты"),
-    FLAVORS("Ароматизаторы"),
-    ANTI_CAKING_AGENTS("Вещества против слеживания");
+public enum SupplementCategory {
+
+    antioxidants("Антиоксиданты"),
+    flavors("Ароматизаторы"),
+    anti_caking_agents("Вещества против слеживания");
     // добавить остальные http://dobavkam.net/additives
 
-    SupplementEnumCategory(String description) {
+    SupplementCategory(String description) {
         this.description = description;
     }
 
@@ -15,4 +16,5 @@ public enum SupplementEnumCategory {
     public String getDescription() {
         return description;
     }
+
 }
