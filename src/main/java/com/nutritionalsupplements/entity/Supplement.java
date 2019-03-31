@@ -13,14 +13,9 @@ public class Supplement {
     @Column(name = "id")
     private long id;
 
-/*
-Чи потрібно розділити "name" = "Е100 – Куркумины"
-на "short_name" = "Е100"
-та "name" = "Куркумины"
+    @Column(name = "e_cod")
+    private String eCod;
 
-    @Column(name = "short_name")
-    private String shortName;
-*/
     @Column(name = "name")
     private String name;
 
