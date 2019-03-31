@@ -40,17 +40,17 @@ public class Product {
     @Column(name = "term_and_conditions_storage")
     private String termAndConditionsStorage;
 
-    @Column(name = "proteins")
-    private String proteins;
-
     @Column(name = "product_weight")
     private Float productWeight;
+
+    @Column(name = "protein")
+    private Float protein;
 
     @Column(name = "fat")
     private Float fat;
 
-    @Column(name = "carbohydrates")
-    private Float carbohydrates;
+    @Column(name = "carbohydrate")
+    private Float carbohydrate;
 
     @Column(name = "calorie_content")
     private Float CalorieContent;
