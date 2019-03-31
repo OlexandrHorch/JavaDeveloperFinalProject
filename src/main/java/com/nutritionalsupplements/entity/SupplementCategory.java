@@ -17,4 +17,12 @@ public enum SupplementCategory {
         return description;
     }
 
+    public static SupplementCategory fromDescription(String description){
+        for(SupplementCategory value : SupplementCategory.values()){
+            if(value.getDescription().equalsIgnoreCase(description)){
+                return value;
+            }
+        }
+        return null;
+    }
 }
