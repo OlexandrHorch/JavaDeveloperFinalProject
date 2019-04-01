@@ -6,11 +6,13 @@ import com.nutritionalsupplements.entity.SupplementDanger;
 import com.nutritionalsupplements.entity.SupplementOrigin;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Service
 public class Parser {
     private Document page = null;
 
@@ -50,6 +52,10 @@ public class Parser {
             e.printStackTrace();
         }
 
+        if (page == null){
+            return null;
+        }
+
         String name = getNamesFromPageE();
         SupplementCategory category = SupplementCategory.fromDescription(getParameterByHtmlClassName("field categories"));
         SupplementDanger danger = SupplementDanger.fromDescription(getParameterByHtmlClassName("danger"));
@@ -59,10 +65,10 @@ public class Parser {
         supplement.setCategory(category);
         supplement.setDanger(danger);
         supplement.setOrigin(origin);
-        supplement.setGeneralInfo(getTextFromTitleToTitle("Общая информация","Влияние на организм Польза"));
-        supplement.setBenefit(getTextFromTitleToTitle("Влияние на организм Польза","Вред"));
-        supplement.setHarm(getTextFromTitleToTitle("Вред","Использование"));
-        supplement.setUsing(getTextFromTitleToTitle("Использование","Законодательство"));
+        supplement.setGeneralInfo(getTextFromTitleToTitle("Общая информация", "Влияние на организм Польза"));
+        supplement.setBenefit(getTextFromTitleToTitle("Влияние на организм Польза", "Вред"));
+        supplement.setHarm(getTextFromTitleToTitle("Вред", "Использование"));
+        supplement.setUsing(getTextFromTitleToTitle("Использование", "Законодательство"));
         supplement.setLegislation(getTextFromTitleToTitle("Законодательство"));
 
 //      System.out.println(supplement.getName());
@@ -96,19 +102,19 @@ public class Parser {
         return content;
     }
 
-    private String removeTitleAndTextBeforeIt(String text, String title){
-        return text.substring(text.indexOf(title)+title.length()+1,text.length());
+    private String removeTitleAndTextBeforeIt(String text, String title) {
+        return text.substring(text.indexOf(title) + title.length() + 1, text.length());
     }
 
-    private String getTextFromTitleToTitle(String titleFrom, String titleTo){
+    private String getTextFromTitleToTitle(String titleFrom, String titleTo) {
         String pageContent = getContentFromPageE();
-        String contentWithoutTitle = removeTitleAndTextBeforeIt(pageContent,titleFrom);
+        String contentWithoutTitle = removeTitleAndTextBeforeIt(pageContent, titleFrom);
         int endOfGeneralInfo = contentWithoutTitle.indexOf(titleTo);
         return contentWithoutTitle.substring(0, endOfGeneralInfo - 1);
     }
 
-    private String getTextFromTitleToTitle(String titleFrom){
+    private String getTextFromTitleToTitle(String titleFrom) {
         String pageContent = getContentFromPageE();
-        return removeTitleAndTextBeforeIt(pageContent,titleFrom);
+        return removeTitleAndTextBeforeIt(pageContent, titleFrom);
     }
 }
