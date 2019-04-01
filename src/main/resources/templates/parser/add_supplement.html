@@ -21,14 +21,18 @@
 </head>
 <body>
 <div class="container">
-    <div class="card mb-3 mt-3">
-        <div class="card-header bg-primary text-white">Додати добавку зі стороннього сайту</div>
-        <div class="card-body">
-            <p class="card-text">Введіть url добавки чи назву добавки &#10;&#13;(http://dobavkam.net/additives/e101, чи e101)</p>
-            <input class="form-control" type="text" placeholder="добавка">
-            <button type="submit" class="btn btn-primary float-right mt-sm-4">Додати</button>
+    <form method="post" action="/add_supplement">
+        <div class="card mb-3 mt-3">
+            <div class="card-header bg-primary text-white">Додати добавку зі стороннього сайту</div>
+            <div class="card-body">
+                <p class="card-text">Введіть назву добавки</p>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="searchString" placeholder="добавка"></input>
+                </div>
+                <button type="submit" class="btn btn-primary float-right mt-sm-4">Додати</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 </body>
 </html>

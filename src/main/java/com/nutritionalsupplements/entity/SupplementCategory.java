@@ -1,25 +1,26 @@
 package com.nutritionalsupplements.entity;
 
 public enum SupplementCategory {
-    antioxidants("Антиоксиданты"),
-    flavors("Ароматизаторы"),
-    anti_caking_agents("Вещества против слеживания"),
-    water_retaining_agents("Влагоудерживающие агенты"),
-    waxes("Воски"),
-    thickeners ("Загустители"),
-    complexing_agents ("Комплексообразователи"),
-    preservatives ("Консерванты"),
-    colorants ("Красители"),
-    frothers ("Пенообразователи"),
-    sweeteners ("Подсластители"),
-    baking_powder ("Разрыхлители"),
-    acidity_regulators ("Регуляторы кислотности"),
-    stabilizers ("Стабилизаторы"),
-    texture_makers ("Текстураторы"),
-    amplifiers_taste_and_aroma ("Усилители вкуса и аромата"),
-    coloring_pins ("Фиксаторы окраски"),
-    emulsifiers ("Эмульгаторы");
-
+  
+    antioxidant("Антиоксиданты"),
+    flavor("Ароматизаторы"),
+    anti_caking_agent("Вещества против слеживания"),
+    moisture_retaining_agent("Влагоудерживающие агенты"),
+    wax("Воски"),
+    thickener("Загустители"),
+    complexing_agent("Комплексообразователи"),
+    preservative("Консерванты"),
+    colorant("Красители"),
+    frother("Пенообразователи"),
+    sweetener("Подсластители"),
+    baking_powder("Разрыхлители"),
+    acidity_regulator("Регуляторы кислотности"),
+    stabilizer("Стабилизаторы"),
+    texturator("Текстураторы"),
+    amplifiers("Усилители вкуса и аромата"),
+    color_retainer("Фиксаторы окраски"),
+    emulsifier("Эмульгаторы");
+  
     SupplementCategory(String description) {
         this.description = description;
     }
