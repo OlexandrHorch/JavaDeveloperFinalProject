@@ -1,7 +1,7 @@
 package com.nutritionalsupplements.entity;
 
 public enum SupplementCategory {
-
+  
     antioxidant("Антиоксиданты"),
     flavor("Ароматизаторы"),
     anti_caking_agent("Вещества против слеживания"),
@@ -20,7 +20,7 @@ public enum SupplementCategory {
     amplifiers("Усилители вкуса и аромата"),
     color_retainer("Фиксаторы окраски"),
     emulsifier("Эмульгаторы");
-
+  
     SupplementCategory(String description) {
         this.description = description;
     }
@@ -40,3 +40,4 @@ public enum SupplementCategory {
         return null;
     }
 }
+

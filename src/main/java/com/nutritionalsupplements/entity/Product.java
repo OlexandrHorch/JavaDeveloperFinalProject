@@ -1,31 +1,63 @@
 package com.nutritionalsupplements.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Data;
 
+import javax.persistence.*;
+
+@Data
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 public class Product {
 
     @Id
     @Column(name = "id")
     private long id;
 
-// ToDo
-/*
-Производитель
-Страна производства
-Состав
-Пищевые Е-добавки
-Срок и условия хранения
-Пищевая и энергетическая ценность
-    Белки
-    Жиры
-    Углеводы
-    Калорийность
-Стандарты
-Штрих-код
-*/
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "long_name")
+    private String longName;
+
+    @Column(name = "trade_mark")
+    private String tradeMark;
+
+    @Column(name = "producing_factory")
+    private String producingFactory;
+
+    @Column(name = "producing_country")
+    private String producingCountry;
+
+    @Column(name = "composition")
+    private String composition;
+
+    @Column(name = "e_supplements")
+    private String eSupplements;
+
+    @Column(name = "other_supplements")
+    private String otherSupplements;
+
+    @Column(name = "term_and_conditions_storage")
+    private String termAndConditionsStorage;
+
+    @Column(name = "product_weight")
+    private Float productWeight;
+
+    @Column(name = "protein")
+    private Float protein;
+
+    @Column(name = "fat")
+    private Float fat;
+
+    @Column(name = "carbohydrate")
+    private Float carbohydrate;
+
+    @Column(name = "calorie_content")
+    private Float CalorieContent;
+
+    @Column(name = "standards")
+    private String standards;
+
+    @Column(name = "barcode")
+    private String barcode;
 }

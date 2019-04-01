@@ -21,8 +21,8 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "last_name") // А нам це потрібно?
+    private String lastName;    // А нам це потрібно?
 
     @Column(name = "active")
     private int active = 1;

@@ -6,15 +6,21 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "supplements")
+@Table(name = "supplement")
 public class Supplement {
 
     @Id
     @Column(name = "id")
     private long id;
 
+    @Column(name = "e_cod")
+    private String eCod;
+
     @Column(name = "name")
     private String name;
+
+    @Column(name = "other_names")
+    private String other_names;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "category")
@@ -28,8 +34,8 @@ public class Supplement {
     @Column(name = "origin")
     private SupplementOrigin Origin;
 
-    @Column(name = "using")
-    private String using;
+    @Column(name = "using_info")
+    private String using_info;
 
     @Column(name = "harm")
     private String harm;
