@@ -68,7 +68,7 @@ public class Parser {
         supplement.setGeneralInfo(getTextFromTitleToTitle("Общая информация", "Влияние на организм Польза"));
         supplement.setBenefit(getTextFromTitleToTitle("Влияние на организм Польза", "Вред"));
         supplement.setHarm(getTextFromTitleToTitle("Вред", "Использование"));
-        supplement.setUsing(getTextFromTitleToTitle("Использование", "Законодательство"));
+        supplement.setUsing_info(getTextFromTitleToTitle("Использование", "Законодательство"));
         supplement.setLegislation(getTextFromTitleToTitle("Законодательство"));
 
 //      System.out.println(supplement.getName());
