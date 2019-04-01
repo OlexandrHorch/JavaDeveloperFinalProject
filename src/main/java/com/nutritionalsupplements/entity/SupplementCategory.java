@@ -2,10 +2,24 @@ package com.nutritionalsupplements.entity;
 
 public enum SupplementCategory {
 
-    antioxidants("Антиоксиданты"),
-    flavors("Ароматизаторы"),
-    anti_caking_agents("Вещества против слеживания");
-    // добавить остальные http://dobavkam.net/additives
+    antioxidant("Антиоксиданты"),
+    flavor("Ароматизаторы"),
+    anti_caking_agent("Вещества против слеживания"),
+    moisture_retaining_agent("Влагоудерживающие агенты"),
+    wax("Воски"),
+    thickener("Загустители"),
+    complexing_agent("Комплексообразователи"),
+    preservative("Консерванты"),
+    colorant("Красители"),
+    frother("Пенообразователи"),
+    sweetener("Подсластители"),
+    baking_powder("Разрыхлители"),
+    acidity_regulator("Регуляторы кислотности"),
+    stabilizer("Стабилизаторы"),
+    texturator("Текстураторы"),
+    amplifiers("Усилители вкуса и аромата"),
+    color_retainer("Фиксаторы окраски"),
+    emulsifier("Эмульгаторы");
 
     SupplementCategory(String description) {
         this.description = description;
