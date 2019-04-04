@@ -3,7 +3,7 @@ package com.nutritionalsupplements.entity;
 public enum SupplementOrigin {
     animal("животное"),
     vegetable("растительные"),
-    artificial("искусственные"),
+    artificial("искусственное"),
     synthetic("синтетические");
 
     SupplementOrigin(String description) {
@@ -14,5 +14,14 @@ public enum SupplementOrigin {
 
     public String getDescription() {
         return description;
+    }
+
+    public static SupplementOrigin fromDescription(String description){
+        for(SupplementOrigin value : SupplementOrigin.values()){
+            if(value.getDescription().equalsIgnoreCase(description)){
+                return value;
+            }
+        }
+        return null;
     }
 }

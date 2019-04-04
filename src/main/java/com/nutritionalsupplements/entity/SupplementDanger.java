@@ -15,4 +15,13 @@ public enum SupplementDanger {
     public String getDescription() {
         return description;
     }
+
+    public static SupplementDanger fromDescription(String description){
+        for(SupplementDanger value : SupplementDanger.values()){
+            if(value.getDescription().equalsIgnoreCase(description)){
+                return value;
+            }
+        }
+        return null;
+    }
 }
