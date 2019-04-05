@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,13 +82,18 @@ public class Parser {
     }
 
     private String getNamesFromPageE() {
-        String result = getParameterByHtmlClassName("name");
+        StringJoiner result = new StringJoiner("#");
+
+        result.add(getParameterByHtmlClassName("name"));
         String namesRaw = page.getElementsByClass("spoiler-body").get(0).text();
         String[] elements = namesRaw.split(",|\\.");
         for (int i = 0; i < elements.length; i++) {
-            result += elements[i].trim() + "#";
+            String alternateName = elements[i].trim();
+            if (!alternateName.isEmpty()) {
+                result.add(elements[i].trim());
+            }
         }
-        return result;
+        return result.toString();
     }
 
     private String getParameterByHtmlClassName(String name) {
