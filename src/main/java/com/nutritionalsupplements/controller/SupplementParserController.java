@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("/add_supplement")
-public class AddSupplementController {
+@RequestMapping("/parser")
+public class SupplementParserController {
 
     @Autowired
     private Parser parser;
@@ -21,18 +23,19 @@ public class AddSupplementController {
 
     @GetMapping
     public String showPage(){
-        return "/parser/add_supplement";
+        return "parser/add_supplement";
     }
 
     @ResponseBody
     @PostMapping
     public String addSupplement(@RequestParam(name = "searchString") String searchString){
-        Supplement supplement = parser.parseEPage(searchString);
-        if (supplement.getClass() == Supplement.class) {
+        try {
+            Supplement supplement = parser.parseEPage(searchString);
             supplementService.saveSupplement(supplement);
-            return supplement.toString();
-        }   else {
-            return "This supplement doesn`t exist on site dobavkam.net";
+            return "Добавка успешно добавлена, название: " + supplementService.getFirstNameOrDefault(supplement, " <непонятно>");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "Не получилось спарсить добавку";
         }
     }
 }

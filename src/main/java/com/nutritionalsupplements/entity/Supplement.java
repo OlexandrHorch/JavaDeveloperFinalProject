@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Supplement {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -19,7 +20,7 @@ public class Supplement {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "other_names")
+    @Column(name = "other_names", length = 2000)
     private String other_names;
 
     @Enumerated(value = EnumType.STRING)
@@ -34,16 +35,17 @@ public class Supplement {
     @Column(name = "origin")
     private SupplementOrigin Origin;
 
-    @Column(name = "using_info")
+    @Lob
+    @Column(name = "using_info", length = 5000)
     private String using_info;
 
-    @Column(name = "harm")
+    @Column(name = "harm", length = 1000)
     private String harm;
 
-    @Column(name = "benefit")
+    @Column(name = "benefit", length = 1000)
     private String benefit;
 
-    @Column(name = "general_info")
+    @Column(name = "general_info", length = 5000)
     private String generalInfo;
 
     @Column(name = "legislation")
