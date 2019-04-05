@@ -1,144 +1,131 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="ru">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head th:replace="fragments :: head"></head>
 
-    <title>E-dobavki</title>
-  </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-light bg-success sticky-top">
-  	<a class="navbar-brand" href="#" >
-  		<img src="images/logo2.png" width="400" height="100" alt="logo">
-  		
-  	</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"aria-controls="navbarSupportedContent" aria-expanded="false" aria-lable="Toggle-Navigation">
+  	<a class="navbar-brand" href="/" >
+  		<img src="https://i.ibb.co/192kTTN/logo2.png" width="230" height="50" alt="logo">
+    </a>
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
   		<span class="navbar-toggler-icon"></span>	
   		</button>
   		<div class="collapse navbar-collapse" id="navbarSupportedContent" >
   			<ul class="navbar-nav mr-auto">
   			<li class="nav-item active">
-  				<a href="#" class="nav-link text-light h4">Головна</a>
+  				<a href="/" class="nav-link text-light h4">Головна</a>
   			</li>
   			<li class="nav-item">
-  				<a href="#" class="nav-link text-light h4">Харчові добавки</a>
+  				<a href="/supplements" class="nav-link text-light h4">Харчові добавки</a>
   			</li>
   			<li class="nav-item">
-  				<a href="#" class="nav-link text-light h4">Продукти</a>
+  				<a href="/supplement" class="nav-link text-light h4">Продукти</a>
   			</li>
       </ul>
       <form class="form-inline">
-        <a href="#" class="nav-link text-light ">Про розробників</a>
+        <a href="/developers" class="nav-link text-light ">Про розробників</a>
       </form>
   		</div>
   	</nav>
-	<form class="form-group my-2 mb-3">
-		<div class="col-auto">
-      <input class="form-control mr-sm-2" type="search" placeholder="Введіть назву добавки" aria-label="Search">
-  </div> 
-      <div class="col-auto my-2">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пошук</button>
+	<div class="container">
+    <div class="row mt-2">
+		  <div class="col-12 col-md-10">
+        <input class="form-control form-control-sm" type="search" placeholder="Введіть назву добавки" aria-label="Search">
+      </div> 
+      <div class="col-12 col-md-2 mt-3 mt-md-0">
+        <button class="btn btn-sm btn-success btn-block" type="submit">Пошук</button>
       </div>
-    </form>
+    </div>
+  </div>
     <div class="col-auto"><h1>Випадкові добавки</h1></div>
+    
     <div class="card-deck">
           <div class="card mb-3 mx-4" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="images/e103.png" class="card-img" alt="picture">
+                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">E-103</h5>
-                  <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
-                  <a href="#" class="btn btn-primary">Детальніше</a>
+                    <h5 class="card-title">E-103</h5>
+                    <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
+                    <a href="/supplement" class="btn btn-primary">Детальніше</a>
                 </div>
-              </div>
             </div>
           </div>
             <div class="card mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="images/e103.png" class="card-img" alt="picture">
+                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">E-103</h5>
-                  <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
-                  <a href="#" class="btn btn-primary">Детальніше</a>
+                    <h5 class="card-title">E-103</h5>
+                    <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
+                    <a href="/supplement" class="btn btn-primary">Детальніше</a>
                 </div>
-              </div>
             </div>
           </div>
           <div class="card mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="images/e103.png" class="card-img" alt="picture">
+                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">E-103</h5>
-                  <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
-                  <a href="#" class="btn btn-primary">Детальніше</a>
+                    <h5 class="card-title">E-103</h5>
+                    <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
+                    <a href="/supplement" class="btn btn-primary">Детальніше</a>
                 </div>
-              </div>
             </div>
-          </div>
-
+        </div>
+    </div>
 </div>
+
 <div class="card-deck">
           <div class="card mb-3 mx-4" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="images/e103.png" class="card-img" alt="picture">
+                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">E-103</h5>
-                  <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
-                  <a href="#" class="btn btn-primary">Детальніше</a>
+                    <h5 class="card-title">E-103</h5>
+                    <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
+                    <a href="/supplement" class="btn btn-primary">Детальніше</a>
                 </div>
-              </div>
             </div>
           </div>
             <div class="card mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="images/e103.png" class="card-img" alt="picture">
+                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">E-103</h5>
-                  <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
-                  <a href="#" class="btn btn-primary">Детальніше</a>
+                    <h5 class="card-title">E-103</h5>
+                    <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
+                    <a href="/supplement" class="btn btn-primary">Детальніше</a>
                 </div>
-              </div>
             </div>
           </div>
           <div class="card mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="images/e103.png" class="card-img" alt="picture">
+                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">E-103</h5>
-                  <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
-                  <a href="#" class="btn btn-primary">Детальніше</a>
+                    <h5 class="card-title">E-103</h5>
+                    <p class="card-text">Походження:рослинне, категорія добавки: барвники, небезпека: висока</p>
+                    <a href="/supplement" class="btn btn-primary">Детальніше</a>
                 </div>
-              </div>
             </div>
-          </div>
-        
+        </div>
+    </div>
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    </body>
 </html>

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -92,7 +93,7 @@ public class Parser {
     }
 
     private String getNamesFromPageE() {
-        String result = "";
+        StringJoiner result = new StringJoiner("#");
         Elements jsoupElements = page.getElementsByClass("spoiler-body");
         if (jsoupElements.isEmpty())  {
             return null;
@@ -100,9 +101,12 @@ public class Parser {
         String namesRaw = jsoupElements.get(0).text();
         String[] elements = namesRaw.split(",|\\.");
         for (int i = 0; i < elements.length; i++) {
-            result += elements[i].trim() + "#";
+            String alternativeName = elements[i].trim();
+            if (!alternativeName.isEmpty()) {
+                result.add(elements[i].trim());
+            }
         }
-        return result;
+        return result.toString();
     }
 
     private String getParameterByHtmlClassName(String name) {
