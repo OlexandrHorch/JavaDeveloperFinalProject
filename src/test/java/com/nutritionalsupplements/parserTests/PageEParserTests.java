@@ -9,30 +9,107 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PageEParserTests {
     private Parser parser = new Parser();
-    private String existingURL = "http://dobavkam.net/additives/e101";
+    private String existingURL = "e103 101 102";
     private String nonExistingURL = "http://dobavkam.net/additives/e121";
 
-    private Supplement supplement = null;
+    private List<Supplement> supplements = new ArrayList<>();
+
+    @Before
+    public void initial(){
+        supplements = parser.parseEPage(existingURL);
+    }
 
     @Test
-    public void testGetDescriptionSuccess() {
-        supplement = parser.parseEPage(existingURL);
+    public void testGetSupplementSuccess() {
         System.out.println("_________________SUPPLEMENT_DATA____________________");
+        for (Supplement supplement : supplements)
         System.out.println(supplement);
         System.out.println("_________________________________________________");
-        Assert.assertEquals(Supplement.class, supplement.getClass());
+        Assert.assertNotEquals(0, supplements.size());
+    }
+
+    @Test
+    public void testGetIdSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getId());
+    }
+
+    @Test
+    public void testGetECodeSuccess() {
+        for (Supplement supplement : supplements)
+            Assert.assertNotEquals(null, supplement.getECod());
+    }
+
+    @Test
+    public void testGetNameSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getName());
+    }
+
+    @Test
+    public void testGetOther_namesSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getOther_names());
+    }
+
+    @Test
+    public void testGetCategorySuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getCategory());
+    }
+
+    @Test
+    public void testGetOriginSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getOrigin());
+    }
+
+    @Test
+    public void testGetDangerSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getDanger());
+    }
+
+    @Test
+    public void testGetUsing_infoSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getUsing_info());
+    }
+
+    @Test
+    public void testGetGeneralInfoSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getGeneralInfo());
+    }
+
+    @Test
+    public void testGetBenefitSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getBenefit());
+    }
+
+    @Test
+    public void testGetHarmSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getHarm());
+    }
+
+    @Test
+    public void testGetLegislationSuccess() {
+        for (Supplement supplement : supplements)
+        Assert.assertNotEquals(null, supplement.getLegislation());
     }
 
     @Test
     public void testGetDescriptionFailure() {
-        supplement = parser.parseEPage(nonExistingURL);
-        System.out.println("_________________SUPPLEMENT_DATA____________________");
-        System.out.println(supplement);
-        System.out.println("_________________________________________________");
-        Assert.assertEquals(null, supplement);
+        supplements = parser.parseEPage(nonExistingURL);
+        Assert.assertEquals(0, supplements.size());
     }
 }

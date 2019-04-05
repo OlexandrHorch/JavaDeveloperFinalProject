@@ -6,9 +6,14 @@ import com.nutritionalsupplements.entity.SupplementDanger;
 import com.nutritionalsupplements.entity.SupplementOrigin;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,17 +21,18 @@ import java.util.regex.Pattern;
 public class Parser {
     private Document page = null;
 
-    public String parseURLStringE(String string) {
-        String eStart = "http://dobavkam.net/additives/";
+    public HashSet<String> parseRequestStringE(String string) {
+        String eStart = "http://dobavkam.net/additives/e";
+        HashSet<String> urls = new HashSet<>();
 
-        Pattern patternE = Pattern.compile("[eE]\\d{3,}|[eE].\\d{3,}");
+        Pattern patternE = Pattern.compile("\\d{3}");
         Matcher matcher = patternE.matcher(string);
 
-        String result = matcher.find() ? matcher.group() : null;
-        if (Pattern.matches("[eE]\\D\\d{3,}", result)) {
-            result = result.substring(0, 1) + result.substring(2);
+        while (matcher.find()){
+            urls.add(eStart + matcher.group());
         }
-        return eStart + result;
+
+        return urls;
     }
 
     public String parseURLStringProduct(String string) {
@@ -39,50 +45,59 @@ public class Parser {
         }
     }
 
-    public Supplement parseEPage(String dirtyURL) {
-        Supplement supplement = new Supplement();
+    public List<Supplement> parseEPage(String request) {
+        List<Supplement> supplements = new ArrayList<>();
 
-        String pageURL = parseURLStringE(dirtyURL);
-        page = null;
-        try {
-            page = Jsoup.connect(pageURL)
-                    .ignoreContentType(true)
-                    .get();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (String url : parseRequestStringE(request)) {
+            Supplement supplement = new Supplement();
+            page = null;
+
+            try {
+                page = Jsoup.connect(url)
+                        .ignoreContentType(true)
+                        .get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (page == null) {     //Если страницы под нашу добавку не существует,
+                continue;           //пропустить её анализ и перейти к следующей добавке.
+            }
+
+            supplement.setECod(getParameterByHtmlClassName("name"));
+            supplement.setName(getNameFromPageE());
+            supplement.setOther_names(getNamesFromPageE());
+            supplement.setCategory(SupplementCategory.fromDescription(getParameterByHtmlClassName("field categories")));
+            supplement.setDanger(SupplementDanger.fromDescription(getParameterByHtmlClassName("danger")));
+            supplement.setOrigin(SupplementOrigin.fromDescription(getParameterByHtmlClassName("origin")));
+            supplement.setGeneralInfo(getTextByHtmlClassName("Общая информация"));
+            supplement.setBenefit(getTextByHtmlClassName("Польза"));
+            supplement.setHarm(getTextByHtmlClassName("Вред"));
+            supplement.setUsing_info(getTextByHtmlClassName("Использование"));
+            supplement.setLegislation(getTextByHtmlClassName("Законодательство"));
+
+            supplements.add(supplement);
         }
-
-        if (page == null){
+        if (supplements.size() != 0) {
+            return supplements;
+        } else {
             return null;
         }
+    }
 
-        String name = getNamesFromPageE();
-        SupplementCategory category = SupplementCategory.fromDescription(getParameterByHtmlClassName("field categories"));
-        SupplementDanger danger = SupplementDanger.fromDescription(getParameterByHtmlClassName("danger"));
-        SupplementOrigin origin = SupplementOrigin.fromDescription(getParameterByHtmlClassName("origin"));
-
-        supplement.setName(name);
-        supplement.setCategory(category);
-        supplement.setDanger(danger);
-        supplement.setOrigin(origin);
-        supplement.setGeneralInfo(getTextFromTitleToTitle("Общая информация", "Влияние на организм Польза"));
-        supplement.setBenefit(getTextFromTitleToTitle("Влияние на организм Польза", "Вред"));
-        supplement.setHarm(getTextFromTitleToTitle("Вред", "Использование"));
-        supplement.setUsing(getTextFromTitleToTitle("Использование", "Законодательство"));
-        supplement.setLegislation(getTextFromTitleToTitle("Законодательство"));
-
-//      System.out.println(supplement.getName());
-//      System.out.println(supplement.getOrigin());
-//      System.out.println(supplement.getCategory());
-//      System.out.println(supplement.getDanger());
-//      System.out.println(supplement.getGeneralInfo());
-
-        return supplement;
+    private String getNameFromPageE(){
+        String nameRaw = page.getElementById("page-title").text();
+        String[] nameRawParts = nameRaw.split(" ");
+        return nameRawParts[nameRawParts.length - 1];
     }
 
     private String getNamesFromPageE() {
-        String result = getParameterByHtmlClassName("name");
-        String namesRaw = page.getElementsByClass("spoiler-body").get(0).text();
+        String result = "";
+        Elements jsoupElements = page.getElementsByClass("spoiler-body");
+        if (jsoupElements.isEmpty())  {
+            return null;
+        }
+        String namesRaw = jsoupElements.get(0).text();
         String[] elements = namesRaw.split(",|\\.");
         for (int i = 0; i < elements.length; i++) {
             result += elements[i].trim() + "#";
@@ -91,30 +106,31 @@ public class Parser {
     }
 
     private String getParameterByHtmlClassName(String name) {
-        String parameterRaw = page.getElementsByClass(name).get(0).text();
-        String[] parameterRaw2 = parameterRaw.split(":");
-        String result = parameterRaw2[parameterRaw2.length - 1].trim();
+        Elements elements = page.getElementsByClass(name);
+        if (elements.isEmpty())  {
+            return null;
+        }
+        String containingParameter = elements.get(0).text();
+        String[] temp = containingParameter.split(":");
+        return temp[temp.length - 1].trim();
+    }
+
+    private String getTextByHtmlClassName(String name) {
+        String result = "";
+        Elements elements = page.select("h2:contains(" + name + ")");
+        if (elements.isEmpty())  {
+            elements = page.select("h3:contains(" + name + ")");
+            if (elements.isEmpty()){
+                return null;
+            }
+        }
+        Element titleElement = elements.get(0);
+        for (Element sibling = titleElement.nextElementSibling(); sibling != null; sibling = sibling.nextElementSibling()) {
+            if ("h2".equals(sibling.tagName())||"h3".equals(sibling.tagName())) {
+                return result;
+            }
+            result += sibling.text();
+        }
         return result;
-    }
-
-    private String getContentFromPageE() {
-        String content = page.getElementsByClass("content").get(0).text();
-        return content;
-    }
-
-    private String removeTitleAndTextBeforeIt(String text, String title) {
-        return text.substring(text.indexOf(title) + title.length() + 1, text.length());
-    }
-
-    private String getTextFromTitleToTitle(String titleFrom, String titleTo) {
-        String pageContent = getContentFromPageE();
-        String contentWithoutTitle = removeTitleAndTextBeforeIt(pageContent, titleFrom);
-        int endOfGeneralInfo = contentWithoutTitle.indexOf(titleTo);
-        return contentWithoutTitle.substring(0, endOfGeneralInfo - 1);
-    }
-
-    private String getTextFromTitleToTitle(String titleFrom) {
-        String pageContent = getContentFromPageE();
-        return removeTitleAndTextBeforeIt(pageContent, titleFrom);
     }
 }
