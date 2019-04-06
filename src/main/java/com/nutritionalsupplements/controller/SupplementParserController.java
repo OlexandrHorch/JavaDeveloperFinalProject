@@ -31,7 +31,7 @@ public class SupplementParserController {
         if (supplements != null) {
             String result = "<h1>Добавки были найдены и добавлены в базу даных<br></h1>";
             for (Supplement supplement : supplements){
-                supplementService.saveSupplement(supplement);
+                //supplementService.saveSupplement(supplement);
                 result += supplement + "<br><br>";
             }
             return result;
