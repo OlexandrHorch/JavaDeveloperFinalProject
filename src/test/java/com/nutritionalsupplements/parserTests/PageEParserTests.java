@@ -16,7 +16,7 @@ import java.util.List;
 @SpringBootTest
 public class PageEParserTests {
     private Parser parser = new Parser();
-    private String existingURL = "e103 101 102";
+    private String existingURL = "e111";
     private String nonExistingURL = "http://dobavkam.net/additives/e121";
 
     private List<Supplement> supplements = new ArrayList<>();

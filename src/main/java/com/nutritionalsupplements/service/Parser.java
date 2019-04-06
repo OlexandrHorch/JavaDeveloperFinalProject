@@ -88,8 +88,8 @@ public class Parser {
 
     private String getNameFromPageE(){
         String nameRaw = page.getElementById("page-title").text();
-        String[] nameRawParts = nameRaw.split(" ");
-        return nameRawParts[nameRawParts.length - 1];
+        String[] nameRawParts = nameRaw.split("-");
+        return nameRawParts[nameRawParts.length - 1].trim();
     }
 
     private String getNamesFromPageE() {
