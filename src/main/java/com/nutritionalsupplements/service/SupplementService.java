@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,4 +48,25 @@ public class SupplementService {
         return supplementRepository.findAll(specification);
     }
 
+    public List<String> getNames(Supplement supplement) {
+        String[] names = supplement.getName().split("#");
+
+        List<String> result = new ArrayList<>();
+
+        for(String name: names) {
+            String cleanName = name.trim();
+
+            if (!cleanName.isEmpty()) {
+                result.add(cleanName);
+            }
+        }
+
+        return result;
+    }
+
+    public String getFirstNameOrDefault(Supplement supplement, String defaultValue) {
+        List<String> names = getNames(supplement);
+
+        return names.size() == 0 ? defaultValue : names.get(0);
+    }
 }
