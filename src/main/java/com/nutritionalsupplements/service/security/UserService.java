@@ -2,17 +2,25 @@ package com.nutritionalsupplements.service.security;
 
 import com.nutritionalsupplements.entity.security.Role;
 import com.nutritionalsupplements.entity.security.User;
+import com.nutritionalsupplements.repository.security.RoleRepository;
 import com.nutritionalsupplements.repository.security.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private RoleService roleService;
@@ -49,5 +57,22 @@ public class UserService {
     public void setPassword(User user, String password) {
         String passwordHash = passwordEncoder.encode(password);
         user.setPassword(passwordHash);
+    }
+
+    public String getUsername() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
+    }
+
+    public User getUser() {
+        return userRepository.getUserByEmail(getUsername());
+    }
+
+    public void saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setActive(1);
+        Role userRole = roleRepository.getRoleByName("USER");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(user);
     }
 }
