@@ -4,18 +4,21 @@
 
 <body>
 <div class="container">
-    <form method="post" action="/supplement_parser" class="parser-form">
-        <div class="card mb-3 mt-3">
-            <div class="card-header bg-primary text-white">Загрузить информацию про добавки с сайта dobavkam.net</div>
-            <div class="card-body">
-                <p class="card-text">Введите запрос, может содержать несколько добавок.</p>
+    <div class="card mb-3 mt-3">
+        <div class="card-header bg-primary text-white">Загрузить информацию про добавки с сайта dobavkam.net</div>
+        <div class="card-body">
+            <p class="card-text">Введите запрос, может содержать несколько добавок.</p>
+            <form method="post" action="/supplement_parser" class="parser-form">
                 <div class="form-group">
                     <input type="text" class="form-control" name="searchString" placeholder="Ваш запрос">
                 </div>
                 <button type="submit" class="btn btn-primary float-right mt-sm-4">Загрузить</button>
-            </div>
+            </form>
+            <form method="post" action="/supplement_parser/parse_all" class="parser-form">
+                <button type="submit" class="btn btn-primary float-right mt-sm-4 mr-sm-4">Загрузить все</button>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
 <script>
@@ -26,6 +29,8 @@
             bootbox.alert(data);
         });
     });
+
+
 </script>
 </body>
 </html>

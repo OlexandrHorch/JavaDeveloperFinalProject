@@ -16,7 +16,7 @@ import java.util.List;
 @SpringBootTest
 public class PageEParserTests {
     private Parser parser = new Parser();
-    private String existingURL = "e111";
+    private String existingURL = "e459";
     private String nonExistingURL = "http://dobavkam.net/additives/e121";
 
     private List<Supplement> supplements = new ArrayList<>();
@@ -109,7 +109,7 @@ public class PageEParserTests {
 
     @Test
     public void testGetDescriptionFailure() {
-        supplements = parser.parseEPage(nonExistingURL);
+        supplements = parser.parseEPage(existingURL);
         Assert.assertEquals(0, supplements.size());
     }
 }
