@@ -2,9 +2,9 @@ package com.nutritionalsupplements.entity;
 
 public enum SupplementOrigin {
     animal("животное"),
-    vegetable("растительные"),
+    vegetable("растительное"),
     artificial("искусственное"),
-    synthetic("синтетические");
+    synthetic("синтетическое");
 
     SupplementOrigin(String description) {
         this.description = description;

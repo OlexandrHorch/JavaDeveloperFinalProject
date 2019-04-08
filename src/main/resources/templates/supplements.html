@@ -1,19 +1,11 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru">
+<head th:replace="fragments :: head"></head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>E-dobavki</title>
-  </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-light bg-success sticky-top">
-  	<a class="navbar-brand" href="./home.html" >
+  	<a class="navbar-brand" href="/" >
   		<img src="https://i.ibb.co/192kTTN/logo2.png" width="230" height="50" alt="logo">
   		
   	</a>
@@ -38,42 +30,23 @@
   		</div>
   	</nav>
   	<div class="col-auto mx-3 text-center"><h1>Пищевые добавки</h1></div>
-  	<div class="conteiner-fluid">
-  		<div class="container">
-  			<div class="row text-center">
-  				<div class="col-sm-12"></div>
-  				<a href="./supplement.html" role="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</a>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-100</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-101</button>
-  				<button type="button" class="btn btn-outline-warning my-2 mx-1 btn-lg">Е-102</button>
-  				</div>
-  			</div>
-  		</div>
+<div class="conteiner-fluid">
+    <div class="container">
+        <div class="row text-center">
+             <div th:each="supplement:${supplements}">
+                 <div class="card">
+                     <div class="btn btn-outline-warning my-2 mx-1 btn-lg">
+                         <span class="card-text">
+                             <a th:href="'/get-supp/'+${supplement.id}" th:text="${supplement.name}" style="color: green"></a>
+                         </span>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-     </body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 </html>

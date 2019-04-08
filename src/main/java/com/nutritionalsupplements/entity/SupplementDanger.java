@@ -4,7 +4,8 @@ public enum SupplementDanger {
     very_low("Очень низкая"),
     low("Низкая"),
     middle("Средняя"),
-    high("Высокая");
+    high("Высокая"),
+    very_high("очень высокая");
 
     SupplementDanger(String description) {
         this.description = description;
