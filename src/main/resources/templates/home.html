@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments :: head"></head>
 
@@ -9,7 +9,7 @@
   		<img src="https://i.ibb.co/192kTTN/logo2.png" width="230" height="50" alt="logo">
     </a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
-  		<span class="navbar-toggler-icon"></span>	
+  		<span class="navbar-toggler-icon"></span>
   		</button>
   		<div class="collapse navbar-collapse" id="navbarSupportedContent" >
   			<ul class="navbar-nav mr-auto">
@@ -28,18 +28,23 @@
       </form>
   		</div>
   	</nav>
-	<div class="container">
-    <div class="row mt-2">
-		  <div class="col-12 col-md-10">
-        <input class="form-control form-control-sm" type="search" placeholder="Введіть назву добавки" aria-label="Search">
-      </div> 
-      <div class="col-12 col-md-2 mt-3 mt-md-0">
-        <button class="btn btn-sm btn-success btn-block" type="submit">Пошук</button>
-      </div>
+
+    <div class="container">
+        <form method="get" action="/supplement">
+            <div class="row">
+                <div class="col-6">
+                    <input class="form-control form-control-sm" type="text" name="searchSupplement"
+                           placeholder="Введите код или название добавки" th:value="${searchSupplement}"/>
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-block btn-sm btn-info">Искать</button>
+                </div>
+            </div>
+        </form>
     </div>
-  </div>
+
     <div class="col-auto"><h1>Випадкові добавки</h1></div>
-    
+
     <div class="card-deck">
           <div class="card mb-3 mx-4" style="max-width: 540px;">
             <div class="row no-gutters">
@@ -124,6 +129,10 @@
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
+</div>
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
