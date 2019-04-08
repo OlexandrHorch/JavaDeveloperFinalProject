@@ -4,13 +4,27 @@
 
 <body>
 <div class="container">
-    <div class="card mb-3 mt-3">
-        <div class="card-header bg-primary text-white">Загрузить информацию про добавки с сайта dobavkam.net</div>
-        <div class="card-body">
-            <p class="card-text">Введите запрос, может содержать несколько добавок.</p>
-            <form method="post" action="/supplement_parser" class="parser-form">
+    <div th:if="${parsedSupplements}" class="card mt-2">
+        <div class="card-header bg-info">Результат парсинга</div>
+
+        <div class="card-body" th:if="${parsedSupplements.size() == 0}">
+            <span class="card-title">Не получилось спарсить ни одну добавку</span>
+        </div>
+
+        <div th:if="${parsedSupplements.size() != 0}" class="card-body">
+            <h5 class="card-title">Следующие добавки были успешно загружены:</h5>
+
+            <span class="card-text" th:each="supplement: ${parsedSupplements}" th:text="${supplement.eCod}"></span>
+        </div>
+    </div>
+
+    <form method="post" action="/supplement_parser" class="parser-form">
+        <div class="card mb-3 mt-3">
+            <div class="card-header bg-primary text-white">Загрузить информацию про добавки с сайта dobavkam.net</div>
+            <div class="card-body">
+                <p class="card-text">Введите запрос, может содержать несколько добавок.</p>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="searchString" placeholder="Ваш запрос">
+                    <textarea rows="10" style="resize: vertical;" class="form-control form-control-sm" name="searchString" placeholder="Ваш запрос"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary float-right mt-sm-4">Загрузить</button>
             </form>
@@ -20,7 +34,6 @@
         </div>
     </div>
 </div>
-
 <script>
     $('.submit-button').click(function(e) {
         var url = $('#url').val();

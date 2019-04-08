@@ -6,6 +6,7 @@ import com.nutritionalsupplements.service.SupplementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -24,7 +25,6 @@ public class SupplementParserController {
         return "parser/supplement_parser";
     }
 
-    @ResponseBody
     @PostMapping
     public String addSupplement(@RequestParam(name = "searchString") String searchString) {
         List<Supplement> supplements = parser.parseEPage(searchString);

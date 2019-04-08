@@ -25,15 +25,15 @@ public class Supplement {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "category")
-    private SupplementCategory Category;
+    private SupplementCategory category;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "danger")
-    private SupplementDanger Danger;
+    private SupplementDanger danger;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "origin")
-    private SupplementOrigin Origin;
+    private SupplementOrigin origin;
 
     @Lob
     @Column(name = "using_info", length = 5000)
