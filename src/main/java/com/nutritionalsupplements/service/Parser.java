@@ -134,4 +134,10 @@ public class Parser {
         }
         return result;
     }
+
+    public void doSmth(){
+        Supplement supplement = new Supplement();
+        supplement.setGeneralInfo("description");
+    }
+
 }

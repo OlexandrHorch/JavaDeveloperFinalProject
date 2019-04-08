@@ -12,25 +12,4 @@ public class IndexController {
         return result;
     }
 
-
-    @GetMapping("/supplement")
-    public String showSupplement() {
-        return "supplement";
-    }
-
-    @GetMapping("/supplements")
-    public String showSupplements() {
-        return "supplements";
-    }
-
-    @GetMapping("/products")
-    public String showProducts() {
-        return "products";
-    }
-
-    @GetMapping("/developers")
-    public String showDevelopers() {
-        return "developers";
-    }
-
 }

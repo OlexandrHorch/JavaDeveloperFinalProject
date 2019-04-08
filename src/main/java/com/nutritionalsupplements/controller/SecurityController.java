@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SecurityController {
+
     @Autowired
     private UserService userService;
 
