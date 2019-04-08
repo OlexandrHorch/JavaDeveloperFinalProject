@@ -18,7 +18,7 @@ public class SupplementController {
     @Autowired
     private SupplementService supplementService;
 
-    @GetMapping("/get-supp/{id}")
+    @GetMapping("/get-supplement/{id}")
     public String getSupplementById(@PathVariable(name = "id") Long id, Model model) {
 
         Supplement supplement = supplementService.getSupplement(id);
@@ -40,13 +40,6 @@ public class SupplementController {
     private Supplement findByCodeName (String codeName){
         return supplementService.query(SupplementSpecifications.withNameContaining(codeName)).get(0);
     }
-  
-    @RequestMapping(value = "/supplement", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Supplement> findByName (@RequestParam("name") String codeName){
-        return supplementService.query(SupplementSpecifications.withNameContaining(codeName));
-    }
-
 
     @PostMapping
     @ResponseBody

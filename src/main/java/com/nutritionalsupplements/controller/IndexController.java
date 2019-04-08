@@ -16,9 +16,9 @@ import java.util.List;
 
 @Controller
 public class IndexController {
+
     @Autowired
     private SupplementService supplementService;
-
 
     @GetMapping("/")
     public ModelAndView index() {
@@ -28,7 +28,7 @@ public class IndexController {
 
     @GetMapping("/supplement")
     public ModelAndView getSupplement(@RequestParam(required = false, defaultValue = "") String searchSupplement) {
-        ModelAndView result = new ModelAndView("/supplement");
+        ModelAndView result = new ModelAndView("supplement");
 
         List<Specification<Supplement>> specs = new ArrayList<>();
 
@@ -45,21 +45,4 @@ public class IndexController {
         return result;
     }
 
-
-    @GetMapping("/supplements")
-    public String showSupplements() {
-        return "supplements";
-    }
-
-
-    @GetMapping("/products")
-    public String showProducts() {
-        return "products";
-    }
-
-
-    @GetMapping("/developers")
-    public String showDevelopers() {
-        return "developers";
-    }
 }
