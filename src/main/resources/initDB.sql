@@ -4,7 +4,6 @@
 CREATE DATABASE nutritional_supplements;
 USE nutritional_supplements;
 
-
 -- table supplement
 CREATE TABLE supplement	(id INT(10) AUTO_INCREMENT,
 						e_cod VARCHAR(10),
@@ -21,7 +20,6 @@ CREATE TABLE supplement	(id INT(10) AUTO_INCREMENT,
 						general_info VARCHAR(5000),
 						legislation VARCHAR(3000),
 						PRIMARY KEY (id));
-
 
 -- table user
 CREATE TABLE user 	(id INT(10) AUTO_INCREMENT,

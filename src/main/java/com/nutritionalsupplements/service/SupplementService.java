@@ -26,7 +26,11 @@ public class SupplementService {
     }
 
     public List<Supplement> getSupplements() {
+        List<Supplement> supplements = supplementRepository.findAll();
+        System.out.println(supplements);
+
         return supplementRepository.findAll();
+
     }
 
     public void updateSupplement(Supplement supplement) {
