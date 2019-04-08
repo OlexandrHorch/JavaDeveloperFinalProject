@@ -27,9 +27,23 @@
                     <textarea rows="10" style="resize: vertical;" class="form-control form-control-sm" name="searchString" placeholder="Ваш запрос"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary float-right mt-sm-4">Загрузить</button>
-            </div>
+            </form>
+            <form method="post" action="/supplement_parser/parse_all" class="parser-form">
+                <button type="submit" class="btn btn-primary float-right mt-sm-4 mr-sm-4">Загрузить все</button>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
+<script>
+    $('.submit-button').click(function(e) {
+        var url = $('#url').val();
+
+        $.post( "/parser", {searchString: url}, function( data ) {
+            bootbox.alert(data);
+        });
+    });
+
+
+</script>
 </body>
 </html>

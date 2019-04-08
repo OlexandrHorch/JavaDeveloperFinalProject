@@ -39,15 +39,15 @@ public class Supplement {
     @Column(name = "using_info", length = 5000)
     private String using_info;
 
-    @Column(name = "harm", length = 1000)
+    @Column(name = "harm", length = 5000)
     private String harm;
 
-    @Column(name = "benefit", length = 1000)
+    @Column(name = "benefit", length = 5000)
     private String benefit;
 
     @Column(name = "general_info", length = 5000)
     private String generalInfo;
 
-    @Column(name = "legislation")
+    @Column(name = "legislation", length = 5000)
     private String legislation;
 }
