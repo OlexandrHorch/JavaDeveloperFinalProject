@@ -79,11 +79,8 @@ public class Parser {
 
             supplements.add(supplement);
         }
-        if (supplements.size() != 0) {
-            return supplements;
-        } else {
-            return null;
-        }
+
+        return supplements;
     }
 
     private String getNameFromPageE(){

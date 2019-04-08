@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+
+<div class="container py-sm-5">
+            <div class="card bg-light mt-sm-3" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                <form th:action="@{/register}" method="post" class="uk-form-stacked">
+                    <h3 class="card-header">Регистрация</h3>
+
+                    <div class="card-body" th:if="${status}">
+                        <div th:if="${status.name() == 'ok'}" class="bg-success p-3 border rounded">
+                            <span style="color: white;">Вы успешно зарегистрировались</span>
+                            <a href="/login" class="btn btn-primary">Войти</a>
+                        </div>
+
+                        <div th:if="${status.name() != 'ok'}" class="bg-danger p-3 border rounded">
+                            <span th:text="${status.description}" style="color: white;">Вы успешно зарегистрировались</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body pt-0 pb-0 mt-0 mb-0">
+                        <p>Для регистрации укажите правильный email (вида email@site.com).</p>
+                        <p>Длина пароля должна составлять не менее 5 символов.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <div>
+                            <label>Email</label>
+                            <input class="form-control form-control-sm" type="text" name="email" placeholder="email@site.com">
+                        </div>
+
+                        <div class="pt-3">
+                            <label>Пароль</label>
+                            <input class="form-control form-control-sm" type="password" name="password">
+                        </div>
+
+                        <div class="pt-3">
+                            <label>Ваше имя</label>
+                            <input type="text" class="form-control form-control-sm" name="firstname">
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+
+                        <a href="/login" class="btn btn btn-outline-primary float-right">Войти</a>
+                    </div>
+                </form>
+
+            </div>
+    </div>
+
+</body>
+</html>
