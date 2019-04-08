@@ -26,7 +26,6 @@ public class IndexController {
         return result;
     }
 
-
     @GetMapping("/supplement")
     public ModelAndView getSupplement(@RequestParam(required = false, defaultValue = "") String searchSupplement) {
         ModelAndView result = new ModelAndView("/supplement");
@@ -63,5 +62,4 @@ public class IndexController {
     public String showDevelopers() {
         return "developers";
     }
-
 }

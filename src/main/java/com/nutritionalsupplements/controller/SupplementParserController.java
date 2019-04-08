@@ -6,6 +6,7 @@ import com.nutritionalsupplements.service.SupplementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -24,19 +25,13 @@ public class SupplementParserController {
         return "parser/supplement_parser";
     }
 
-    @ResponseBody
     @PostMapping
-    public String addSupplement(@RequestParam(name = "searchString") String searchString){
+    public ModelAndView addSupplement(@RequestParam(name = "searchString") String searchString){
+        ModelAndView result = new ModelAndView("parser/supplement_parser");
+
         List<Supplement> supplements = parser.parseEPage(searchString);
-        if (supplements != null) {
-            String result = "<h1>Добавки были найдены и добавлены в базу даных<br></h1>";
-            for (Supplement supplement : supplements){
-                //supplementService.saveSupplement(supplement);
-                result += supplement + "<br><br>";
-            }
-            return result;
-        }   else {
-            return "<H1>Этой добавки нет на сайте dobavkam.net</H1>";
-        }
+        result.addObject("parsedSupplements", supplements);
+
+        return result;
     }
 }
