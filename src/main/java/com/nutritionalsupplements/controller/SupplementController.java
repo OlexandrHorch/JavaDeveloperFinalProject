@@ -40,5 +40,19 @@ public class SupplementController {
     private Supplement findByCodeName (String codeName){
         return supplementService.query(SupplementSpecifications.withNameContaining(codeName)).get(0);
     }
+  
+    @RequestMapping(value = "/supplement", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Supplement> findByName (@RequestParam("name") String codeName){
+        return supplementService.query(SupplementSpecifications.withNameContaining(codeName));
+    }
 
+
+    @PostMapping
+    @ResponseBody
+    public Supplement changeSupplement(@RequestParam(name = "id") Long id, @RequestBody Supplement supplement) {
+        supplement.setId(id);
+        supplementService.updateSupplement(supplement);
+        return supplement;
+    }
 }
