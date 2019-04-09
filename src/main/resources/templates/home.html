@@ -3,142 +3,45 @@
 
 <head th:replace="fragments :: head"></head>
 
-  <body>
-  	<nav class="navbar navbar-expand-lg navbar-light bg-success sticky-top">
-  	<a class="navbar-brand" href="/" >
-  		<img src="https://i.ibb.co/192kTTN/logo2.png" width="230" height="50" alt="logo">
-    </a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
-  		<span class="navbar-toggler-icon"></span>
-  		</button>
-  		<div class="collapse navbar-collapse" id="navbarSupportedContent" >
-  			<ul class="navbar-nav mr-auto">
-  			<li class="nav-item active">
-  				<a href="./home.html" class="nav-link text-light h4">Главная</a>
-  			</li>
-  			<li class="nav-item">
-  				<a href="./supplements.html" class="nav-link text-light h4">Пищевые добавки</a>
-  			</li>
-  			<li class="nav-item">
-  				<a href="./supplement.html" class="nav-link text-light h4">Продукты</a>
-  			</li>
-      </ul>
-      <form class="form-inline">
-        <a href="./developers.html" class="nav-link text-light ">О разработчиках</a>
-      </form>
-  		</div>
-  	</nav>
+<body>
 
-    <div class="container">
-        <form method="get" action="/supplement">
-            <div class="row">
-                <div class="col-6">
-                    <input class="form-control form-control-sm" type="text" name="searchSupplement"
-                           placeholder="Введите код или название добавки" th:value="${searchSupplement}"/>
-                </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-block btn-sm btn-info">Искать</button>
-                </div>
-            </div>
-        </form>
-    </div>
+<!--Top menu-->
+<th:block th:replace="fragments :: top-menu"></th:block>
 
-    <div class="col-auto"><h1>Случайные добавки</h1></div>
+<div class="container-fluid">
 
-    <div class="card-deck">
-          <div class="card mb-3 mx-4" style="max-width: 540px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">E-103</h5>
-                    <p class="card-text">Происхождение :растительное, категория добавки: красители, опасность: высокая</p>
-                    <a href="/supplement" class="btn btn-primary">Подробнее</a>
-                </div>
+    <form method="get" action="/supplement">
+        <div class="row mb-2">
+            <div class="col-12 col-md-10">
+                <input class="form-control" type="text" name="searchSupplement"
+                       placeholder="Введите код или название добавки" th:value="${searchSupplement}"/>
             </div>
-          </div>
-          </div>
-            <div class="card mb-3" style="max-width: 540px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">E-103</h5>
-                    <p class="card-text">Происхождение :растительное, категория добавки: красители, опасность: высокая</p>
-                    <a href="/supplement" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-          </div>
-            </div>
-          <div class="card mb-3" style="max-width: 540px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">E-103</h5>
-                    <p class="card-text">Происхождение :растительное, категория добавки: красители, опасность: высокая</p>
-                    <a href="/supplement" class="btn btn-primary">Подробнее</a>
-                </div>
+            <div class="col-12 mt-2 col-md-2 mt-md-0">
+                <button type="submit" class="btn btn-block btn-info">
+                    <span class="fa fa-search"></span> Искать</button>
             </div>
         </div>
-    </div>
+    </form>
 </div>
+
+<div class="col-auto"><h1>Случайные добавки</h1></div>
 
 <div class="card-deck">
-          <div class="card mb-3 mx-4" style="max-width: 540px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
+    <div class="card mb-3 mx-4" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
                 <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
-              </div>
-              <div class="col-md-8">
+            </div>
+            <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">E-103</h5>
-                    <p class="card-text">Происхождение :растительное, категория добавки: красители, опасность: высокая</p>
-                    <a href="/supplement" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-          </div>
-          </div>
-            <div class="card mb-3" style="max-width: 540px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">E-103</h5>
-                    <p class="card-text">Происхождение :растительное, категория добавки: красители, опасность: высокая</p>
-                    <a href="/supplement" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-          </div>
-            </div>
-          <div class="card mb-3" style="max-width: 540px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="http://am-am.su/uploads/posts/2013-09/1379943962_e103.png" class="card-img" alt="picture">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">E-103</h5>
-                    <p class="card-text">Происхождение :растительное, категория добавки: красители, опасность: высокая</p>
+                    <p class="card-text">Происхождение :растительное, категория добавки: красители, опасность:
+                        высокая</p>
                     <a href="/supplement" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    </body>
+</body>
 </html>
