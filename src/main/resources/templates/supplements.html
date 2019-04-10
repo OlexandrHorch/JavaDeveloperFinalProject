@@ -7,7 +7,25 @@
   <!--Top menu-->
   <th:block th:replace="fragments :: top-menu"></th:block>
 
-  <div class="col-auto mx-3 text-center"><h1>Пищевые добавки</h1></div>
+  <div class="container-fluid">
+
+      <form method="get" action="/">
+          <div class="row mb-2">
+              <div class="col-12 col-md-10">
+                  <input class="form-control" type="text" name="searchRequest"
+                         placeholder="Введите код или название добавки" th:value="${searchRequest}"/>
+              </div>
+              <div class="col-12 mt-2 col-md-2 mt-md-0">
+                  <button type="submit" class="btn btn-block btn-info search-button">
+                      <span class="fa fa-search"></span> Искать</button>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="col-auto mx-3 text-center">
+      <h1 th:text="${searchRequest == null ? 'Случайные добавки' : 'Результаты поиска'}">Пищевые добавки</h1>
+  </div>
 
     <div class="container-fluid">
             <div class="row text-center">
@@ -22,6 +40,17 @@
                  </div>
             </div>
     </div>
+
+  <script>
+      $('.search-button').click(function(e) {
+          //Окошко Подождите
+          bootbox.dialog({
+              message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Подождите, ищем добавки...</div>',
+              closeButton: false,
+              centerVertical: true
+          });
+      });
+  </script>
   </body>
 
 </html>

@@ -7,6 +7,14 @@ import java.util.List;
 
 public class SupplementSpecifications {
 
+    public static Specification<Supplement> withUsingInfoLike(String usingInfo) {
+        return (root, cq, cb) -> cb.like(cb.lower(root.get("using_info")), "%" + usingInfo.toLowerCase() + "%");
+    }
+
+    public static Specification<Supplement> withECodeLike(String eCode) {
+        return (root, cq, cb) -> cb.like(cb.lower(root.get("eCod")), "%" + eCode.toLowerCase() + "%");
+    }
+
     public static Specification<Supplement> withNameContaining(String codeName) {
         return (root, cq, cb) -> cb.like(cb.lower(root.get("name")), "%" + codeName.toLowerCase() + "%");
     }
