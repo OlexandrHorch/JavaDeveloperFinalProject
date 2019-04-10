@@ -28,10 +28,10 @@
   </div>
 
     <div class="container-fluid">
-            <div class="row text-center">
+            <div class="row justify-content-center ">
                  <div th:each="supplement:${supplements}">
                      <div class="card">
-                         <div class="btn btn-outline-warning my-2 mx-1 btn-lg">
+                         <div class="btn btn-outline-warning mx-1 my-2 btn-lg">
                              <span class="card-text">
                                  <a th:href="'/get-supp/'+${supplement.id}" th:text="${supplement.eCod}" style="color: green"></a>
                              </span>
