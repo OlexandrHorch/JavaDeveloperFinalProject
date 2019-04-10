@@ -6,10 +6,14 @@ import com.nutritionalsupplements.service.SupplementService;
 import com.nutritionalsupplements.service.SupplementSpecifications;
 import com.nutritionalsupplements.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,6 +26,36 @@ public class SupplementController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public ModelAndView index(@RequestParam(required = false) String searchRequest) {
+        ModelAndView result = new ModelAndView("supplements");
+
+        List<Specification<Supplement>> specs = new ArrayList<>();
+
+        if (searchRequest != null && !searchRequest.trim().isEmpty()) {
+            specs.add(SupplementSpecifications.or(
+                        SupplementSpecifications.withOtherNamesLike(searchRequest),
+                        SupplementSpecifications.withNameContaining(searchRequest),
+                        SupplementSpecifications.withUsingInfoLike(searchRequest),
+                        SupplementSpecifications.withECodeLike(searchRequest)
+                    ));
+            result.addObject("searchRequest", searchRequest);
+        }
+
+        List<Supplement> supplements = null;
+        if (specs.size() > 0) {
+            supplements = supplementService.query(SupplementSpecifications.and(specs), Sort.by(Sort.Direction.ASC, "eCod"));
+        } else {
+            supplements = supplementService.getSupplements();
+        }
+
+        result.addObject("supplements", supplements);
+
+        result.addObject("user", userService.getUser());
+
+        return result;
+    }
+
     @GetMapping("/get-supplement/{id}")
     public String getSupplementById(@PathVariable(name = "id") Long id, Model model) {
 
@@ -31,22 +65,6 @@ public class SupplementController {
         model.addAttribute("user", userService.getUser());
 
         return "supplement";
-    }
-
-    @GetMapping("/supplements")
-    public String getSuplements(Model model) {
-
-        List<Supplement> supplements = supplementService.getSupplements();
-
-        model.addAttribute("supplements", supplements);
-
-        model.addAttribute("user", userService.getUser());
-
-        return "supplements";
-    }
-
-    private Supplement findByCodeName (String codeName){
-        return supplementService.query(SupplementSpecifications.withNameContaining(codeName)).get(0);
     }
 
     @PostMapping("/supplement/change")
