@@ -1,53 +1,27 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <html lang="ru">
+  
 <head th:replace="fragments :: head"></head>
 
   <body>
-  	<nav class="navbar navbar-expand-lg navbar-light bg-success sticky-top">
-  	<a class="navbar-brand" href="/" >
-  		<img src="https://i.ibb.co/192kTTN/logo2.png" width="230" height="50" alt="logo">
-  		
-  	</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
-  		<span class="navbar-toggler-icon"></span>	
-  		</button>
-  		<div class="collapse navbar-collapse" id="navbarSupportedContent" >
-  			<ul class="navbar-nav mr-auto">
-  			<li class="nav-item active">
-  				<a href="/" class="nav-link text-light h4">Главная</a>
-  			</li>
-  			<li class="nav-item">
-  				<a href="/supplements" class="nav-link text-light h4">Пищевые добавки</a>
-  			</li>
-  			<li class="nav-item">
-  				<a href="/products" class="nav-link text-light h4">Продукты</a>
-  			</li>
-      </ul>
-      <form class="form-inline">
-        <a href="/developers" class="nav-link text-light ">О разработчиках</a>
-      </form>
-  		</div>
-  	</nav>
-  	<div class="col-auto mx-3 text-center"><h1>Пищевые добавки</h1></div>
-<div class="conteiner-fluid">
-    <div class="container">
-        <div class="row text-center">
-             <div th:each="supplement:${supplements}">
-                 <div class="card">
-                     <div class="btn btn-outline-warning my-2 mx-1 btn-lg">
-                         <span class="card-text">
-                             <a th:href="'/get-supp/'+${supplement.id}" th:text="${supplement.eCod}" style="color: green"></a>
-                         </span>
+  <!--Top menu-->
+  <th:block th:replace="fragments :: top-menu"></th:block>
+
+  <div class="col-auto mx-3 text-center"><h1>Пищевые добавки</h1></div>
+
+    <div class="container-fluid">
+            <div class="row text-center">
+                 <div th:each="supplement:${supplements}">
+                     <div class="card">
+                         <div class="btn btn-outline-warning my-2 mx-1 btn-lg">
+                             <span class="card-text">
+                                 <a th:href="'/get-supp/'+${supplement.id}" th:text="${supplement.eCod}" style="color: green"></a>
+                             </span>
+                         </div>
                      </div>
                  </div>
-             </div>
-        </div>
+            </div>
     </div>
-</div>
   </body>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 </html>
