@@ -27,14 +27,14 @@ public class IndexController {
     }
 
     @GetMapping("/supplement")
-    public ModelAndView getSupplement(@RequestParam(required = false, defaultValue = "") String searchSupplement) {
+    public ModelAndView searchSupplement(@RequestParam(required = false, defaultValue = "") String searchRequest) {
         ModelAndView result = new ModelAndView("supplement");
 
         List<Specification<Supplement>> specs = new ArrayList<>();
 
-        if (!searchSupplement.trim().isEmpty()) {
-            specs.add(SupplementSpecifications.withOtherNamesLike(searchSupplement));
-            result.addObject("searchSupplement", searchSupplement);
+        if (!searchRequest.trim().isEmpty()) {
+            specs.add(SupplementSpecifications.withOtherNamesLike(searchRequest));
+            result.addObject("searchRequest", searchRequest);
         }
 
         result.addObject("supplements",
