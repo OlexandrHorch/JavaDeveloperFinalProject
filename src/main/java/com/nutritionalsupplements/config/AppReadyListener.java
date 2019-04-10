@@ -53,6 +53,8 @@ public class AppReadyListener {
         User adminUser = new User();
         adminUser.setEmail(defaultAdminName);
         adminUser.setPassword(defaultAdminPassword);
+        adminUser.setName("Админ");
+        adminUser.setLastName("Админ");
 
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.getRoleByName("ADMIN"));

@@ -51,21 +51,40 @@
 <div th:fragment="top-menu" xmlns:th="http://www.w3.org/1999/xhtml">
     <nav class="navbar navbar-expand-lg navbar-light bg-success sticky-top mb-4">
         <a class="navbar-brand" href="/" >
-            <img src="https://i.ibb.co/192kTTN/logo2.png" width="230" height="50" alt="logo">
+            <img src="/img/logo.png" width="230" height="50" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a href="/" class="nav-link text-light h4">Главная</a>
-                </li>
                 <li class="nav-item">
                     <a href="/supplements" class="nav-link text-light h4">Пищевые добавки</a>
                 </li>
+
+                <li class="nav-item dropdown" th:if="${user != null and user.isAdmin()}">
+                    <a class="nav-link dropdown-toggle text-light h4" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Админпанель
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/supplement_parser">Парсинг добавок</a>
+                    </div>
+                </li>
             </ul>
+
+
+
             <form class="form-inline">
+                <th:block th:if="${user}">
+                    <a class="btn btn-danger" href="/logout">Выйти</a>
+                    <a class="btn btn-info ml-2" href="/profile">Профиль</a>
+
+                    <span class="badge badge-light ml-2" th:text="'Вошли как ' + ${user.name}">Вошли как Админ</span>
+                </th:block>
+
+                <a th:if="${user == null}" class="btn btn-sm btn-light" href="/login">Войти</a>
+
+
                 <a href="/developers" class="nav-link text-light ">О разработчиках</a>
             </form>
         </div>

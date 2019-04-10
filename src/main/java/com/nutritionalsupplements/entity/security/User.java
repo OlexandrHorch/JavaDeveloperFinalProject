@@ -96,4 +96,8 @@ public class User {
 
         return false;
     }
+
+    public boolean isAdmin() {
+        return hasRole("ADMIN");
+    }
 }

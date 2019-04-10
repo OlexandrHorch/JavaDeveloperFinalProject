@@ -73,4 +73,8 @@ public class SupplementService {
 
         return names.size() == 0 ? defaultValue : names.get(0);
     }
+
+    public void saveAll(List<Supplement> supplements) {
+        supplementRepository.saveAll(supplements);
+    }
 }

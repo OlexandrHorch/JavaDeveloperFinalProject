@@ -8,6 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,6 +22,9 @@ import java.util.regex.Pattern;
 @Service
 public class Parser {
     private Document page = null;
+
+    @Autowired
+    private SupplementService supplementService;
 
     public HashSet<String> parseRequestStringE(String string) {
         String eStart = "http://dobavkam.net/additives/e";
@@ -79,6 +83,8 @@ public class Parser {
 
             supplements.add(supplement);
         }
+
+        supplementService.saveAll(supplements);
 
         return supplements;
     }

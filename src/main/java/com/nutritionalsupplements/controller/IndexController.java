@@ -3,6 +3,7 @@ package com.nutritionalsupplements.controller;
 import com.nutritionalsupplements.entity.Supplement;
 import com.nutritionalsupplements.service.SupplementService;
 import com.nutritionalsupplements.service.SupplementSpecifications;
+import com.nutritionalsupplements.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -20,15 +21,23 @@ public class IndexController {
     @Autowired
     private SupplementService supplementService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/")
     public ModelAndView index() {
         ModelAndView result = new ModelAndView("home");
+
+        result.addObject("user", userService.getUser());
+
         return result;
     }
 
     @GetMapping("/supplement")
     public ModelAndView searchSupplement(@RequestParam(required = false, defaultValue = "") String searchRequest) {
         ModelAndView result = new ModelAndView("supplement");
+
+        result.addObject("user", userService.getUser());
 
         List<Specification<Supplement>> specs = new ArrayList<>();
 
