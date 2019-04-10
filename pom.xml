@@ -11,7 +11,7 @@
     <groupId>com.nutritionalsupplements</groupId>
     <artifactId>JavaDeveloperFinalProject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>JavaDeveloperFinalProject</name>
+    <name>supplements</name>
     <description>Final project</description>
 
     <properties>
@@ -95,6 +95,8 @@
     </dependencies>
 
     <build>
+        <finalName>supplements</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
