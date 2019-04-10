@@ -4,6 +4,7 @@ import com.nutritionalsupplements.entity.Supplement;
 import com.nutritionalsupplements.service.Parser;
 import com.nutritionalsupplements.service.SupplementService;
 import com.nutritionalsupplements.service.SupplementSpecifications;
+import com.nutritionalsupplements.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,16 @@ public class SupplementController {
     @Autowired
     private SupplementService supplementService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/get-supplement/{id}")
     public String getSupplementById(@PathVariable(name = "id") Long id, Model model) {
 
         Supplement supplement = supplementService.getSupplement(id);
         model.addAttribute("supplement", supplement);
+
+        model.addAttribute("user", userService.getUser());
 
         return "supplement";
     }
@@ -34,6 +40,8 @@ public class SupplementController {
 
         model.addAttribute("supplements", supplements);
 
+        model.addAttribute("user", userService.getUser());
+
         return "supplements";
     }
 
@@ -41,7 +49,7 @@ public class SupplementController {
         return supplementService.query(SupplementSpecifications.withNameContaining(codeName)).get(0);
     }
 
-    @PostMapping
+    @PostMapping("/supplement/change")
     @ResponseBody
     public Supplement changeSupplement(@RequestParam(name = "id") Long id, @RequestBody Supplement supplement) {
         supplement.setId(id);

@@ -20,8 +20,12 @@ public class SecurityController {
     private RegistrationValidateService registrationValidateService;
 
     @GetMapping("/login")
-    public String login() {
-        return "security/login";
+    public ModelAndView login() {
+        ModelAndView result = new ModelAndView("security/login");
+
+        result.addObject("user", userService.getUser());
+
+        return result;
     }
 
     @GetMapping("/register")
@@ -54,5 +58,33 @@ public class SecurityController {
         }
 
         return "redirect:/register?status=" + status;
+    }
+
+    @GetMapping("/profile")
+    public ModelAndView getProfile() {
+        ModelAndView result = new ModelAndView("security/profile");
+
+        result.addObject("user", userService.getUser());
+
+        return result;
+    }
+
+    @PostMapping("/profile")
+    public String postProfile(@RequestParam(name = "name") String name,
+                              @RequestParam(name = "password", required = false) String password) {
+        User user = userService.getUser();
+
+        if (!name.isEmpty()) {
+            user.setName(name);
+            user.setLastName(name);
+        }
+
+        if (password != null && !password.isEmpty()) {
+            userService.setPassword(user, password);
+        }
+
+        userService.update(user);
+
+        return "redirect:/profile";
     }
 }

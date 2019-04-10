@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+<!--Top menu-->
+<div th:replace="fragments :: top-menu"></div>
+
+<div class="container">
+            <div class="card mt-sm-3" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                <form th:action="@{/profile}" method="post">
+                    <h3 class="card-header">Редактирование профиля</h3>
+
+                    <div class="card-body">
+                        <p>Если хотите изменить пароль - введите его в поле Пароль. Если изменять не хотите - оставьте это поле пустым</p>
+
+                        <div class="pt-3">
+                            <label>Ваше имя</label>
+                            <input th:value="${user.name}" type="text" class="form-control form-control-sm" name="name">
+                        </div>
+
+                        <div class="pt-3">
+                            <label>Пароль</label>
+                            <input class="form-control form-control-sm" type="password" name="password" placeholder="Оставьте пустым, если не хотите менять пароль">
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                    </div>
+                </form>
+
+            </div>
+    </div>
+
+</body>
+</html>

@@ -3,6 +3,9 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
+<!--Top menu-->
+<th:block th:replace="fragments :: top-menu"></th:block>
+
 <div class="container">
     <div th:if="${parsedSupplements}" class="card mt-2">
         <div class="card-header bg-info text-white">Результат парсинга</div>
