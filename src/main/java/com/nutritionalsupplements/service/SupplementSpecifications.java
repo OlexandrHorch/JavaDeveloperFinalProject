@@ -1,6 +1,9 @@
 package com.nutritionalsupplements.service;
 
 import com.nutritionalsupplements.entity.Supplement;
+import com.nutritionalsupplements.entity.SupplementCategory;
+import com.nutritionalsupplements.entity.SupplementDanger;
+import com.nutritionalsupplements.entity.SupplementOrigin;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
@@ -19,16 +22,25 @@ public class SupplementSpecifications {
         return (root, cq, cb) -> cb.like(cb.lower(root.get("name")), "%" + codeName.toLowerCase() + "%");
     }
 
-
     public static Specification<Supplement> withOtherNamesLike(String other_names) {
         return (root, cq, cb) -> cb.like(cb.lower(root.get("other_names")), "%" + other_names.toLowerCase() + "%");
     }
 
+    public static Specification<Supplement> withCategory(SupplementCategory category) {
+        return (root, cq, cb) -> cb.equal(root.get("category"), category);
+    }
+
+    public static Specification<Supplement> withDanger(SupplementDanger danger) {
+        return (root, cq, cb) -> cb.equal(root.get("danger"), danger);
+    }
+
+    public static Specification<Supplement> withOrigin(SupplementOrigin origin) {
+        return (root, cq, cb) -> cb.equal(root.get("origin"), origin);
+    }
 
     public static Specification and(List<Specification<Supplement>> specifications) {
         return and(specifications.toArray(new Specification[specifications.size()]));
     }
-
 
     public static Specification<Supplement> and(Specification<Supplement>... specifications) {
         Specification<Supplement> result = Specification.where(specifications[0]);
@@ -39,7 +51,6 @@ public class SupplementSpecifications {
 
         return result;
     }
-
 
     public static Specification<Supplement> or(Specification<Supplement>... specifications) {
         Specification<Supplement> result = Specification.where(specifications[0]);

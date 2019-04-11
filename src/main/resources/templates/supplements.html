@@ -20,25 +20,87 @@
                       <span class="fa fa-search"></span> Искать</button>
               </div>
           </div>
+
+          <div class="more-params-block">
+              <div class="row mb-2">
+
+                  <!--Category-->
+                  <div class="col-12 col-md-4">
+                      <div class="form-group">
+                          <label for="supplementCategory">Категория</label>
+                          <select id="supplementCategory" name="supplementCategory" class="form-control form-control-sm">
+                              <option value="">Любая</option>
+
+                              <option th:each="sCategory: ${supplementCategories}"
+                                      th:text="${sCategory.description}"
+                                      th:value="${sCategory.name()}"
+                                      th:selected="${sCategory == supplementCategory}"></option>
+                          </select>
+                      </div>
+                  </div>
+
+                  <!--Danger-->
+                  <div class="col-12 mt-2 mt-md-0 col-md-4">
+                      <div class="form-group">
+                          <label for="supplementDanger">Опасность</label>
+                          <select id="supplementDanger" name="supplementDanger" class="form-control form-control-sm">
+                              <option value="">Любая</option>
+
+                              <option th:each="sDanger: ${supplementDangers}"
+                                      th:text="${sDanger.description}"
+                                      th:value="${sDanger.name()}"
+                                      th:selected="${sDanger == supplementDanger}"></option>
+                          </select>
+                      </div>
+                  </div>
+
+                  <!--Origin-->
+                  <div class="col-12 mt-2 mt-md-0 col-md-4">
+                      <div class="form-group">
+                          <label for="supplementOrigin">Происхождение</label>
+                          <select id="supplementOrigin" name="supplementOrigin" class="form-control form-control-sm">
+                              <option value="">Любое</option>
+
+                              <option th:each="sOrigin: ${supplementOrigins}"
+                                      th:text="${sOrigin.description}"
+                                      th:value="${sOrigin.name()}"
+                                      th:selected="${sOrigin == supplementOrigin}"></option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
       </form>
   </div>
 
-  <div class="col-auto mx-3 text-center">
-      <h1 th:text="${searchRequest == null ? 'Случайные добавки' : 'Результаты поиска'}">Пищевые добавки</h1>
-  </div>
-
     <div class="container-fluid">
-            <div class="row justify-content-center ">
-                 <div th:each="supplement:${supplements}">
-                     <div class="card">
-                         <div class="btn btn-outline-warning mx-1 my-2 btn-lg">
+        <!--Service description-->
+        <div th:if="${searchRequest == null and supplementDanger == null and supplementOrigin == null and supplementCategory == null}" class="card">
+            <div class="card-body">
+                <p>
+                    Сервис пищевых добавок позволяет искать пищевые добавки по их коду либо названию. Просто нажмите на нужную добавку для получения полной информации о ней. Если не видите нужной добавки - воспользуйтесь поиском.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <h1 class="card-header bg-success" style="font-size: 1.5rem;" th:text="${searchRequest == null ? 'Все пищевые добавки' : 'Результаты поиска'}"></h1>
+
+            <div class="card-body">
+                <div class="row justify-content-center ">
+                    <div th:each="supplement:${supplements}">
+                        <div class="card">
+                            <div class="btn btn-outline-warning mx-1 my-2 btn-lg">
                              <span class="card-text">
                                  <a th:href="'/get-supp/'+${supplement.id}" th:text="${supplement.eCod}" style="color: green"></a>
                              </span>
-                         </div>
-                     </div>
-                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
     </div>
 
   <script>

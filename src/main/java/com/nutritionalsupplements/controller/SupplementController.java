@@ -1,6 +1,9 @@
 package com.nutritionalsupplements.controller;
 
 import com.nutritionalsupplements.entity.Supplement;
+import com.nutritionalsupplements.entity.SupplementCategory;
+import com.nutritionalsupplements.entity.SupplementDanger;
+import com.nutritionalsupplements.entity.SupplementOrigin;
 import com.nutritionalsupplements.service.Parser;
 import com.nutritionalsupplements.service.SupplementService;
 import com.nutritionalsupplements.service.SupplementSpecifications;
@@ -27,7 +30,10 @@ public class SupplementController {
     private UserService userService;
 
     @GetMapping("/")
-    public ModelAndView index(@RequestParam(required = false) String searchRequest) {
+    public ModelAndView index(@RequestParam(required = false) String searchRequest,
+                              @RequestParam(required = false) SupplementCategory supplementCategory,
+                              @RequestParam(required = false) SupplementDanger supplementDanger,
+                              @RequestParam(required = false) SupplementOrigin supplementOrigin) {
         ModelAndView result = new ModelAndView("supplements");
 
         List<Specification<Supplement>> specs = new ArrayList<>();
@@ -42,6 +48,24 @@ public class SupplementController {
             result.addObject("searchRequest", searchRequest);
         }
 
+        result.addObject("supplementCategories", SupplementCategory.values());
+        if (supplementCategory != null) {
+            specs.add(SupplementSpecifications.withCategory(supplementCategory));
+            result.addObject("supplementCategory", supplementCategory);
+        }
+
+        result.addObject("supplementDangers", SupplementDanger.values());
+        if (supplementDanger != null) {
+            specs.add(SupplementSpecifications.withDanger(supplementDanger));
+            result.addObject("supplementDanger", supplementDanger);
+        }
+
+        result.addObject("supplementOrigins", SupplementOrigin.values());
+        if (supplementOrigin != null) {
+            specs.add(SupplementSpecifications.withOrigin(supplementOrigin));
+            result.addObject("supplementOrigin", supplementOrigin);
+        }
+
         List<Supplement> supplements = null;
         if (specs.size() > 0) {
             supplements = supplementService.query(SupplementSpecifications.and(specs), Sort.by(Sort.Direction.ASC, "eCod"));
@@ -52,6 +76,10 @@ public class SupplementController {
         result.addObject("supplements", supplements);
 
         result.addObject("user", userService.getUser());
+
+        //SEO params
+        result.addObject("title", "Список пищевых добавок с описаниями");
+        result.addObject("description", "Сервис позволяет искать пищевые добавки по коду, опасности, происхождению, и предназначению. Для каждой добавки есть подробное описание");
 
         return result;
     }
