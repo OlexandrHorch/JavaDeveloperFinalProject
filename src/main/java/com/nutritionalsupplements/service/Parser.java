@@ -72,15 +72,18 @@ public class Parser {
             supplement.setECod(getParameterByHtmlClassName("name"));
             supplement.setName(getNameFromPageE());
             supplement.setOther_names(getNamesFromPageE());
-            supplement.setCategory(SupplementCategory.fromDescription(getParameterByHtmlClassName("field categories")));
-            supplement.setDanger(SupplementDanger.fromDescription(getParameterByHtmlClassName("danger")));
-            supplement.setOrigin(SupplementOrigin.fromDescription(getParameterByHtmlClassName("origin")));
+            supplement.setCategory(getCategoryFromPageE());
+            supplement.setDanger(getDangerFromPageE());
+            supplement.setOrigin(getOriginFromPageE());
             supplement.setGeneralInfo(getTextByHtmlClassName("Общая информация"));
             supplement.setBenefit(getTextByHtmlClassName("Польза"));
             supplement.setHarm(getTextByHtmlClassName("Вред"));
             supplement.setUsing_info(getTextByHtmlClassName("Использование"));
             supplement.setLegislation(getTextByHtmlClassName("Законодательство"));
 
+            if (supplement.getDanger() == SupplementDanger.not_assigned && supplement.getOrigin()==SupplementOrigin.not_assigned && supplement.getCategory()==SupplementCategory.not_assigned){
+                continue;
+            }
             supplements.add(supplement);
         }
 
@@ -91,7 +94,6 @@ public class Parser {
 
     private String getNameFromPageE(){
         String nameRaw = page.getElementById("page-title").text();
-        //String[] nameRawParts = nameRaw.split("-");
         return nameRaw.substring(7);
     }
 
@@ -111,6 +113,47 @@ public class Parser {
         }
         return result.toString();
     }
+
+    private SupplementCategory getCategoryFromPageE(){
+        String result = getParameterByHtmlClassName("field categories");
+        if (result == null){
+            return SupplementCategory.not_assigned;
+        }
+        if (result.toLowerCase().contains("эмульгаторы")){
+            result = "эмульгаторы";
+        }
+        if (result.toLowerCase().contains("красители")){
+            result = "красители";
+        }
+        return SupplementCategory.fromDescription(result);
+    }
+
+    private SupplementOrigin getOriginFromPageE(){
+        String result = getParameterByHtmlClassName("origin");
+        if (result == null){
+            return SupplementOrigin.not_assigned;
+        }
+        if (result.contains("натуральное")){
+            result = "натуральное";
+        }
+        if (result.contains("искусственное")){
+            result = "искусственное";
+        }
+        if (result.contains("синтетическое")){
+            result = "синтетическое";
+        }
+        return SupplementOrigin.fromDescription(result);
+    }
+
+    private SupplementDanger getDangerFromPageE(){
+        String rawTexst = getParameterByHtmlClassName("danger");
+        if (rawTexst == null){
+            return SupplementDanger.not_assigned;
+        }
+        return SupplementDanger.fromDescription(rawTexst);
+    }
+
+
 
     private String getParameterByHtmlClassName(String name) {
         Elements elements = page.getElementsByClass(name);
