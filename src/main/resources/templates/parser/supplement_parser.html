@@ -23,7 +23,7 @@
 
     <div class="card mb-3 mt-3">
 
-        <div class="card-header bg-primary text-white">Загрузить информацию про добавки с сайта dobavkam.net</div>
+        <div class="card-header border-success text-success font-weight-bold">Загрузить информацию про добавки с сайта dobavkam.net</div>
         <div class="card-body">
             <form method="post" action="/supplement_parser" class="parser-form">
                 <p class="card-text">Введите запрос, может содержать несколько добавок.</p>
@@ -31,10 +31,10 @@
                     <textarea rows="10" style="resize: vertical;" class="form-control form-control-sm"
                               name="searchString" placeholder="Ваш запрос"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary float-right mt-sm-4">Загрузить</button>
+                <button type="submit" class="btn btn-success float-right mt-sm-4">Загрузить</button>
             </form>
             <form method="post" action="/supplement_parser/parse_all" class="parser-form">
-                <button type="submit" class="btn btn-primary float-right mt-sm-4 mr-sm-4">Загрузить все</button>
+                <button type="submit" class="btn btn-success float-right mt-sm-4 mr-sm-4">Загрузить все</button>
             </form>
         </div>
     </div>

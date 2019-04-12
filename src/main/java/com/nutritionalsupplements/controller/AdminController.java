@@ -1,13 +1,12 @@
 package com.nutritionalsupplements.controller;
 
 import com.nutritionalsupplements.entity.Supplement;
+import com.nutritionalsupplements.repository.SupplementRepository;
 import com.nutritionalsupplements.service.SupplementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +35,15 @@ public class AdminController {
     @PostMapping("/add-supp")
     public String addSupplement(Supplement supplement) {
         supplementService.saveSupplement(supplement);
+
+        return "redirect:/";
+    }
+
+    @GetMapping ("/deleteSupplement/{id}")
+    public String deleteSupplementById(@PathVariable(name = "id") Long id) {
+
+        Supplement supplement = supplementService.getSupplement(id);
+        supplementService.removeSupplement(supplement);
 
         return "redirect:/";
     }

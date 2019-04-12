@@ -68,21 +68,28 @@
                 </li>
             </ul>
 
-
-
-            <form class="form-inline">
-                <th:block th:if="${user}">
+                <!--<th:block th:if="${user}">
                     <a class="btn btn-danger" href="/logout">Выйти</a>
                     <a class="btn btn-info ml-2" href="/profile">Профиль</a>
 
-                    <span class="badge badge-light ml-2" th:text="'Вошли как ' + ${user.name}">Вошли как Админ</span>
-                </th:block>
+                    <span class="badge badge-light ml-2 text-wrap" style="height: 2.2rem; width: 5rem;" th:text="'Вошли как ' + ${user.name}">Админ</span>
+                </th:block>-->
 
                 <a th:if="${user == null}" class="btn btn-sm btn-light" href="/login">Войти</a>
 
 
                 <a href="/developers" class="nav-link text-light ">О разработчиках</a>
-            </form>
+
+                <div class="nav-item dropdown" th:if="${user != null and user.isAdmin()}">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="formMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       th:text="'Вошли как ' + ${user.name}">Админ
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/profile">Профиль</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Выйти</a>
+                    </div>
+                </div>
         </div>
     </nav>
 </div>
