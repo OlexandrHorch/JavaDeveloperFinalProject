@@ -31,7 +31,13 @@
             <div class="card mb-3 mx-4">
                 <div class="row no-gutters">
                     <div class="col-sm">
-                        <div class=" mx-4 mt-3 h4 text-success"><span class="card-text" th:text="${supplement.name}"></span></div>
+                        <span class="card-text">
+                                 <a th:href="'/supplement/change/'+${supplement.id}" th:text="Редактировать" class="btn btn-primary"></a>
+                             </span>
+                        <div class=" mx-4 mt-3 h2 text-success"><span class="card-text" th:text="${supplement.eCod}"></span></div>
+
+                        <div class=" mx-4 mt-3 h4"><span class="card-text" th:text="${supplement.name}"></span></div>
+
                         <div class=" mx-4 mt-3"><span class="card-text" th:text="${supplement.other_names}"></span></div>
                         <div class="mx-4 mt-3">Происхождение: <span class="card-text" th:text="${supplement.origin.getDescription()}"></span></div>
                         <div class="mx-4 mt-3">Категория: <span class="card-text" th:text="${supplement.category.getDescription()}"></span></div>

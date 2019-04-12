@@ -34,7 +34,7 @@ public class SupplementService {
         final Supplement supplementForUpdate = this.supplementRepository.findById(supplement.getId())
                 .orElseThrow(EntityNotFoundException::new);
 
-        supplementRepository.save(supplementForUpdate);
+        supplementRepository.save(supplement);
     }
 
     public void removeSupplement(Supplement supplement) {

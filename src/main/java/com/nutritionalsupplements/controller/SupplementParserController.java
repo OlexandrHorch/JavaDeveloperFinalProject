@@ -2,6 +2,7 @@ package com.nutritionalsupplements.controller;
 
 import com.nutritionalsupplements.entity.Supplement;
 import com.nutritionalsupplements.service.Parser;
+import com.nutritionalsupplements.service.SupplementService;
 import com.nutritionalsupplements.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class SupplementParserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SupplementService supplementService;
+
     @GetMapping
     public ModelAndView showPage() {
         ModelAndView result = new ModelAndView("parser/supplement_parser");
@@ -35,6 +39,8 @@ public class SupplementParserController {
         ModelAndView resultView = new ModelAndView("parser/supplement_parser");
         resultView.addObject("user", userService.getUser());
         resultView.addObject("parsedSupplements",supplements);
+        supplementService.saveAll(supplements);
+
         return resultView;
     }
 

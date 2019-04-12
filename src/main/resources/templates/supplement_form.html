@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>E-dobavki</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-success sticky-top">
+    <a class="navbar-brand" href="/">
+        <img src="https://i.ibb.co/192kTTN/logo2.png" width="230" height="50" alt="logo">
+
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="/" class="nav-link text-light h4">Головна</a>
+            </li>
+            <li class="nav-item">
+                <a href="/supplements" class="nav-link text-light h4">Харчові добавки</a>
+            </li>
+            <li class="nav-item">
+                <a href="/products" class="nav-link text-light h4">Продукти</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <a href="/developers" class="nav-link text-light ">Про розробників</a>
+        </form>
+    </div>
+</nav>
+
+<div class="col-sm-12 mx-3"><h1>Пищевая добавка</h1></div>
+
+<div class="card-body">
+    <form action="#" th:action="@{/supplement/change}" th:object="${supplement}" method="post">
+
+
+
+    <div class="mt-sm-3 mb-sm-1">
+
+        <div class="container">
+
+
+
+
+
+                <div class="row no-gutters">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>Code</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{eCod}" />
+                        </div>
+                        <div class="form-group">
+                            <label>name</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{name}" />
+                        </div>
+                        <div class="form-group">
+                            <label>name</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{other_names}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Происхождение</label>
+                            <select class="form-control" th:field="*{origin}">
+                            <option th:each="orig : ${T(com.nutritionalsupplements.entity.SupplementOrigin).values()}"
+                                    th:value="${orig}"
+                                    th:text="${orig.description}">
+                            </option>
+                        </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Категория добавки</label>
+                            <select class="form-control" th:field="*{category}">
+                                <option th:each="cat : ${T(com.nutritionalsupplements.entity.SupplementCategory).values()}"
+                                        th:value="${cat}"
+                                        th:text="${cat.description}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Опасность</label>
+                            <select class="form-control" th:field="*{danger}">
+                            <option th:each="dan : ${T(com.nutritionalsupplements.entity.SupplementDanger).values()}"
+                                    th:value="${dan}"
+                                    th:text="${dan.description}">
+                            </option>
+                        </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Общая информация</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{generalInfo}" />
+                        </div>
+                        <div class="row">
+                            <div class="col-sm h4 text-center">Влияние на организм</div>
+                        </div>
+                        <div class="form-group">
+                            <label>benefit</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{benefit}" />
+                        </div>
+                        <div class="form-group">
+                            <label>harm</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{harm}" />
+                        </div>
+                        <div class="form-group">
+                            <label>using_info</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{using_info}" />
+                        </div>
+                        <div class="form-group">
+                            <label>legislation</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{legislation}" />
+                        </div>
+
+
+                <input type="hidden" th:value="${supplement.id}" name="id" />
+                <div class="submit">
+                    <button type="submit" class="btn btn-primary" name="save" th:text="Сохранить">Сохранить</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+</body>
+</html>
