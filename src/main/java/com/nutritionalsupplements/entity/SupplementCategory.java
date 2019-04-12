@@ -1,7 +1,7 @@
 package com.nutritionalsupplements.entity;
 
 public enum SupplementCategory {
-  
+    not_assigned("Не указана"),
     antioxidant("Антиоксиданты"),
     flavor("Ароматизаторы"),
     anti_caking_agent("Вещества против слеживания"),
