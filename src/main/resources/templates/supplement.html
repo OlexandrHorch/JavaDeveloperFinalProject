@@ -42,12 +42,15 @@
 <div class="col-sm-12 mx-3"><h1>Пищевая добавка</h1></div>
 
 <div class="card-body">
-    <div th:each="supplement: ${supplements}" class="mt-sm-3 mb-sm-1">
+    <div class="mt-sm-3 mb-sm-1">
 
         <div class="container">
             <div class="card mb-3 mx-4">
                 <div class="row no-gutters">
                     <div class="col-sm">
+                        <span class="card-text">
+                                 <a th:href="'/supplement/change/'+${supplement.id}" th:text="Редактировать" class="btn btn-primary"></a>
+                             </span>
                         <div class=" mx-4 mt-3 h2 text-success"><span class="card-text" th:text="${supplement.eCod}"></span></div>
 
                         <div class=" mx-4 mt-3 h4"><span class="card-text" th:text="${supplement.name}"></span></div>

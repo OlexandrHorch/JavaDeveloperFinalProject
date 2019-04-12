@@ -95,11 +95,32 @@ public class SupplementController {
         return "supplement";
     }
 
+    @GetMapping("/supplement/change/{id}")
+    public ModelAndView getSupplementChangeForm(@PathVariable(name = "id") Long id) {
+
+        Supplement supplement = supplementService.getSupplement(id);
+
+
+        ModelAndView result = new ModelAndView("supplement_form");
+        result.addObject("supplement", supplement);
+        result.addObject("title", "Список пищевых добавок с описаниями");
+        result.addObject("description", "Сервис");
+        return result;
+    }
+
     @PostMapping("/supplement/change")
-    @ResponseBody
-    public Supplement changeSupplement(@RequestParam(name = "id") Long id, @RequestBody Supplement supplement) {
-        supplement.setId(id);
+    public ModelAndView changeSupplement(Supplement supplement) {
+
+
+
         supplementService.updateSupplement(supplement);
-        return supplement;
+
+        List<Supplement> supplements = supplementService.getSupplements();
+
+        ModelAndView result = new ModelAndView("redirect:/");
+        result.addObject("supplement", supplements);
+        result.addObject("title", "Список пищевых добавок с описаниями");
+        result.addObject("description", "Сервис");
+        return result;
     }
 }
