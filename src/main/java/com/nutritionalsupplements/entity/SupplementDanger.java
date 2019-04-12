@@ -1,11 +1,13 @@
 package com.nutritionalsupplements.entity;
 
 public enum SupplementDanger {
+    not_assigned("Не указана"),
+    zero("Нулевая"),
     very_low("Очень низкая"),
     low("Низкая"),
     middle("Средняя"),
     high("Высокая"),
-    very_high("очень высокая");
+    very_high("Очень высокая");
 
     SupplementDanger(String description) {
         this.description = description;
