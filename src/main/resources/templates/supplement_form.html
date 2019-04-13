@@ -1,58 +1,19 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="ru">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>E-dobavki</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-success sticky-top">
-    <a class="navbar-brand" href="/">
-        <img src="https://i.ibb.co/192kTTN/logo2.png" width="230" height="50" alt="logo">
 
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a href="/" class="nav-link text-light h4">Головна</a>
-            </li>
-            <li class="nav-item">
-                <a href="/supplements" class="nav-link text-light h4">Харчові добавки</a>
-            </li>
-            <li class="nav-item">
-                <a href="/products" class="nav-link text-light h4">Продукти</a>
-            </li>
-        </ul>
-        <form class="form-inline">
-            <a href="/developers" class="nav-link text-light ">Про розробників</a>
-        </form>
-    </div>
-</nav>
+<th:block th:replace="fragments :: top-menu"></th:block>
 
 <div class="col-sm-12 mx-3"><h1>Пищевая добавка</h1></div>
 
 <div class="card-body">
     <form action="#" th:action="@{/supplement/change}" th:object="${supplement}" method="post">
 
-
-
     <div class="mt-sm-3 mb-sm-1">
 
         <div class="container">
-
-
-
-
 
                 <div class="row no-gutters">
                     <div class="col-sm">
@@ -109,15 +70,15 @@
                         </div>
                         <div class="form-group">
                             <label>harm</label>
-                            <input class="form-control form-control-sm" type="text" th:field="*{harm}" />
+                            <textarea class="form-control form-control-sm" type="text" th:field="*{harm}" />
                         </div>
                         <div class="form-group">
                             <label>using_info</label>
-                            <input class="form-control form-control-sm" type="text" th:field="*{using_info}" />
+                            <textarea class="form-control" name="text" style="resize: vertical" th:field="*{using_info}" />
                         </div>
                         <div class="form-group">
                             <label>legislation</label>
-                            <input class="form-control form-control-sm" type="text" th:field="*{legislation}" />
+                            <textarea class="form-control form-control-sm" type="text" th:field="*{legislation}" />
                         </div>
 
 

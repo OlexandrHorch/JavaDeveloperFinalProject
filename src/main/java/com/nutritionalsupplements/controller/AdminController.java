@@ -20,6 +20,7 @@ public class AdminController {
     @GetMapping()
     public String getAdminHomePage( Model model) {
         List<Supplement> supplements = supplementService.getSupplements();
+
         model.addAttribute("supplements", supplements);
         return "admin-home-supplements";
     }

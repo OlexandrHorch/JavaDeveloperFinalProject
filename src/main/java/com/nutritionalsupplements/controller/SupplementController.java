@@ -4,6 +4,7 @@ import com.nutritionalsupplements.entity.Supplement;
 import com.nutritionalsupplements.entity.SupplementCategory;
 import com.nutritionalsupplements.entity.SupplementDanger;
 import com.nutritionalsupplements.entity.SupplementOrigin;
+import com.nutritionalsupplements.entity.security.User;
 import com.nutritionalsupplements.service.Parser;
 import com.nutritionalsupplements.service.SupplementService;
 import com.nutritionalsupplements.service.SupplementSpecifications;
@@ -97,9 +98,7 @@ public class SupplementController {
 
     @GetMapping("/supplement/change/{id}")
     public ModelAndView getSupplementChangeForm(@PathVariable(name = "id") Long id) {
-
         Supplement supplement = supplementService.getSupplement(id);
-
 
         ModelAndView result = new ModelAndView("supplement_form");
         result.addObject("supplement", supplement);
@@ -110,8 +109,6 @@ public class SupplementController {
 
     @PostMapping("/supplement/change")
     public ModelAndView changeSupplement(Supplement supplement) {
-
-
 
         supplementService.updateSupplement(supplement);
 

@@ -4,13 +4,6 @@
   <body>
 
   <th:block th:replace="fragments :: top-menu"></th:block>
-
-  <button type="button"  class="btn btn-outline-warning my-3 mx-2 btn-md">
-        <span class="card-text">
-          <a th:href="'/supplement_parser/parse_all'" style="color: green">Спарсить все добавки</a>
-        </span>
-  </button>
-
 <div class="card">
 
   <div class="card-body">
@@ -18,11 +11,27 @@
       <div class="container">
         <div class="row text-center">
           <div th:each="supplement:${supplements}">
-            <div class="card">
-              <div class="list-cell">
-                         <span class="card-text">
-                             <a th:href="'/get-supp/'+${supplement.id}" th:text="${supplement.eCod}" style="color: green"></a>
-                         </span>
+            <div class="card" style="width: 100%; float:left;">
+              <div class="card-body">
+                  <span class="card-text col-sm-3" style="float: left;">
+                      <a class="card-text fl" th:href="'/get-supp/'+${supplement.id}" th:text="${supplement.eCod}" style="color: green;"></a>
+                      <p class="card-text" th:text="${supplement.name}"></p>
+                      <p class="card-text" th:text="${supplement.other_names}"></p>
+                      <p class="card-text" th:text="${supplement.category}"></p>
+                      <p class="card-text" th:text="${supplement.danger}"></p>
+                      <p class="card-text" th:text="${supplement.origin}"></p>
+                  </span>
+                  <span class="card-text text-left col-sm-7" style="float: left">
+                      <p class="card-text" th:text="${supplement.using_info}"></p>
+                      <p class="card-text" th:text="${supplement.harm}"></p>
+                      <p class="card-text" th:text="${supplement.benefit}"></p>
+                      <p class="card-text " th:text="${supplement.generalInfo}"></p>
+                      <p class="card-text" th:text="${supplement.legislation}"></p>
+                  </span>
+                  <span class="card-text col-sm-2" style="float:right">
+                    <button type="button" class="btn btn-danger float-right my-2 mx-2"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-warning float-right my-2 mx-2"><i class="fa fa-pencil"></i></button>
+                  </span>
               </div>
             </div>
           </div>

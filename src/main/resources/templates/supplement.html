@@ -31,9 +31,14 @@
             <div class="card mb-3 mx-4">
                 <div class="row no-gutters">
                     <div class="col-sm">
-                        <span class="card-text">
+
+                        <div th:if="${user != null and user.hasRole('ADMIN')}">
+                            <div class="card-text mx-3 my-2">
                                  <a th:href="'/supplement/change/'+${supplement.id}" th:text="Редактировать" class="btn btn-primary"></a>
-                             </span>
+                                <a th:href="'/admin/deleteSupplement/'+${supplement.id}" th:text="Удалить" class="btn btn-danger"></a>
+                             </div>
+                        </div>
+
                         <div class=" mx-4 mt-3 h2 text-success"><span class="card-text" th:text="${supplement.eCod}"></span></div>
 
                         <div class=" mx-4 mt-3 h4"><span class="card-text" th:text="${supplement.name}"></span></div>
