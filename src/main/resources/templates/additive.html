@@ -23,7 +23,7 @@
     </form>
 </div>
 
-<div class="col-sm-12 mx-3 text-success"><h1 align="center">Пищевая добавка <span class="card-text" th:text="${additive.eCod}"></span></h1></div>
+<div class="col-sm-12 mx-3 text-success"><h1 align="center">Пищевая добавка <span class="card-text" th:text="${supplement.eCod}"></span></h1></div>
 
 <div class="card-body">
     <div class="mt-sm-3 mb-sm-1">
@@ -31,24 +31,30 @@
             <div class="card mb-3 mx-4">
                 <div class="row no-gutters">
                     <div class="col-sm">
-                        <span class="card-text">
-                                 <a th:href="'/additive/change/'+${additive.id}" th:text="Редактировать" class="btn btn-primary"></a>
-                             </span>
-                        <div class=" mx-4 mt-3 h2 text-success"><span class="card-text" th:text="${additive.eCod}"></span></div>
 
-                        <div class=" mx-4 mt-3 h4"><span class="card-text" th:text="${additive.name}"></span></div>
 
-                        <div class=" mx-4 mt-3"><span class="card-text" th:text="${additive.otherNames}"></span></div>
-                        <div class="mx-4 mt-3">Происхождение: <span class="card-text" th:text="${additive.origin.getDescription()}"></span></div>
-                        <div class="mx-4 mt-3">Категория: <span class="card-text" th:text="${additive.category.getDescription()}"></span></div>
-                        <div class="mx-4 mt-3">Опасность: <span class="card-text" th:text="${additive.danger.getDescription()}"></span></div>
+                        <div th:if="${user != null and user.hasRole('ADMIN')}">
+                            <div class="card-text mx-3 my-2">
+                                 <a th:href="'/addition/change/'+${addition.id}" th:text="Редактировать" class="btn btn-primary"></a>
+                                <a th:href="'/admin/deleteAddition/'+${addition.id}" th:text="Удалить" class="btn btn-danger"></a>
+                             </div>
+                        </div>
+
+                        <div class=" mx-4 mt-3 h2 text-success"><span class="card-text" th:text="${supplement.eCod}"></span></div>
+
+                        <div class=" mx-4 mt-3 h4"><span class="card-text" th:text="${supplement.name}"></span></div>
+
+                        <div class=" mx-4 mt-3"><span class="card-text" th:text="${supplement.other_names}"></span></div>
+                        <div class="mx-4 mt-3">Происхождение: <span class="card-text" th:text="${supplement.origin.getDescription()}"></span></div>
+                        <div class="mx-4 mt-3">Категория: <span class="card-text" th:text="${supplement.category.getDescription()}"></span></div>
+                        <div class="mx-4 mt-3">Опасность: <span class="card-text" th:text="${supplement.danger.getDescription()}"></span></div>
                     </div>
 
                     <div class="col-md-8">
                         <div class="card-body">
                             <div class="col-sm h4 text-center">Общая информация</div>
                             <p class="card-text text-justify"><span class="card-text"
-                                                                    th:text="${additive.generalInfo}"></span></p>
+                                                                    th:text="${supplement.generalInfo}"></span></p>
                         </div>
                     </div>
                 </div>
@@ -61,13 +67,13 @@
                 <div class="row">
                     <div class="col-sm">
                         <div class="mx-4 h5 text-success text-center">Польза</div>
-                        <div class="mx-4 text-justify"><span class="card-text" th:text="${additive.benefit}"></span>
+                        <div class="mx-4 text-justify"><span class="card-text" th:text="${supplement.benefit}"></span>
                         </div>
                     </div>
 
                     <div class="col-sm">
                         <div class="h5 text-danger text-center">Вред</div>
-                        <div class="mr-4 text-justify"><span class="card-text" th:text="${additive.harm}"></span>
+                        <div class="mr-4 text-justify"><span class="card-text" th:text="${supplement.harm}"></span>
                         </div>
                     </div>
                 </div>
@@ -75,14 +81,14 @@
                 <p></p>
                 <div class="row">
                     <div class="col-sm h4 text-center">Использование</div>
-                    <div class="mx-4 text-justify"><span class="card-text" th:text="${additive.usingInfo}"></span>
+                    <div class="mx-4 text-justify"><span class="card-text" th:text="${supplement.using_info}"></span>
                     </div>
                 </div>
 
                 <p></p>
                 <div class="row">
                     <div class="col-sm h4 text-center">Законодавство</div>
-                    <div class="mx-4 text-justify"><span class="card-text" th:text="${additive.legislation}"></span>
+                    <div class="mx-4 text-justify"><span class="card-text" th:text="${supplement.legislation}"></span>
                     </div>
                 </div>
                 <p></p>
