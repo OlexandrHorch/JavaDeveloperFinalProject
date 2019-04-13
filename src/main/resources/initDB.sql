@@ -1,11 +1,11 @@
--- Data base for final project "Nutritional supplements"
+-- Data base for final project "Nutritional additives"
 -- Creating database and tables
 
 CREATE DATABASE nutritional_supplements;
 USE nutritional_supplements;
 
--- table supplement
-CREATE TABLE supplement	(id INT(10) AUTO_INCREMENT,
+-- table additive
+CREATE TABLE additive	(id INT(10) AUTO_INCREMENT,
 						e_cod VARCHAR(10),
 						name VARCHAR(50),
 						other_names VARCHAR(2000),
@@ -67,10 +67,10 @@ CREATE TABLE product 	(id INT(10) AUTO_INCREMENT,
 						PRIMARY KEY (id));
 
 
--- table supplement and product
+-- table additive and product
 CREATE TABLE supplement_product	(id INT(10) AUTO_INCREMENT,
 								supplement_id INT(10) NOT NULL,
 								product_id INT(10) NOT NULL,
 								PRIMARY KEY (id),
-								FOREIGN KEY (supplement_id) REFERENCES supplement (id),
+								FOREIGN KEY (supplement_id) REFERENCES additive (id),
 								FOREIGN KEY (product_id) REFERENCES product (id));

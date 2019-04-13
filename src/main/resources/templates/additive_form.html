@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+
+<head th:replace="fragments :: head"></head>
+<body>
+
+<th:block th:replace="fragments :: top-menu"></th:block>
+
+<div class="col-sm-12 mx-3"><h1>Пищевая добавка</h1></div>
+
+<div class="card-body">
+    <form action="#" th:action="@{/additive/change}" th:object="${additive}" method="post">
+
+    <div class="mt-sm-3 mb-sm-1">
+
+        <div class="container">
+
+                <div class="row no-gutters">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>Code</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{eCod}" />
+                        </div>
+                        <div class="form-group">
+                            <label>name</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{name}" />
+                        </div>
+                        <div class="form-group">
+                            <label>name</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{otherNames}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Происхождение</label>
+                            <select class="form-control" th:field="*{origin}">
+                            <option th:each="orig : ${T(com.additives.entity.AdditiveOrigin).values()}"
+                                    th:value="${orig}"
+                                    th:text="${orig.description}">
+                            </option>
+                        </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Категория добавки</label>
+                            <select class="form-control" th:field="*{category}">
+                                <option th:each="cat : ${T(com.additives.entity.AdditiveCategory).values()}"
+                                        th:value="${cat}"
+                                        th:text="${cat.description}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Опасность</label>
+                            <select class="form-control" th:field="*{danger}">
+                            <option th:each="dan : ${T(com.additives.entity.AdditiveDanger).values()}"
+                                    th:value="${dan}"
+                                    th:text="${dan.description}">
+                            </option>
+                        </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Общая информация</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{generalInfo}" />
+                        </div>
+                        <div class="row">
+                            <div class="col-sm h4 text-center">Влияние на организм</div>
+                        </div>
+                        <div class="form-group">
+                            <label>benefit</label>
+                            <input class="form-control form-control-sm" type="text" th:field="*{benefit}" />
+                        </div>
+                        <div class="form-group">
+                            <label>harm</label>
+                            <textarea class="form-control form-control-sm" type="text" th:field="*{harm}" />
+                        </div>
+                        <div class="form-group">
+                            <label>usingInfo</label>
+                            <textarea class="form-control" name="text" style="resize: vertical" th:field="*{usingInfo}" />
+                        </div>
+                        <div class="form-group">
+                            <label>legislation</label>
+                            <textarea class="form-control form-control-sm" type="text" th:field="*{legislation}" />
+                        </div>
+
+
+                <input type="hidden" th:value="${additive.id}" name="id" />
+                <div class="submit">
+                    <button type="submit" class="btn btn-primary" name="save" th:text="Сохранить">Сохранить</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+</body>
+</html>
