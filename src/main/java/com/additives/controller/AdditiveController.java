@@ -97,6 +97,7 @@ public class AdditiveController {
         Additive additive = additiveService.getAdditive(id);
 
         ModelAndView result = new ModelAndView("additive_form");
+        result.addObject("user", userService.getUser());
         result.addObject("additive", additive);
         result.addObject("title", "Список пищевых добавок с описаниями");
         result.addObject("description", "Сервис");
