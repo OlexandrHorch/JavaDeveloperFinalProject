@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 pt-sm-2">
+            <form method="post" action="/admin/add-supp">
+                <div class="card">
+                    <div class="card-header bg-primary" style="color: white;">Добавление новой добавки</div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <textarea rows="1" class="form-control" name="eCod" style="resize: horizontal" placeholder="Введите код добавки (E***)"></textarea>
+                            <textarea rows="1" class="form-control" name="name" style="resize: horizontal" placeholder="Введите название добавки"></textarea>
+                            <textarea rows="1" class="form-control" name="otherNames" style="resize: horizontal" placeholder="Введите другие имена"></textarea>
+                            <textarea rows="1" class="form-control" name="harm" style="resize: vertical" placeholder="Введите вред добавки"></textarea>
+                            <textarea rows="1" class="form-control" name="benefit" style="resize: vertical" placeholder="Введите пользу добавки"></textarea>
+                            <textarea class="form-control" name="usingInfo" style="resize: vertical" placeholder="Введите информацию об использовании"></textarea>
+                            <textarea rows="6" class="form-control" name="generalInfo" style="resize: vertical" placeholder="Введите описание добавки"></textarea>
+                            <select class="choice-box" style="margin: 20px 20px 0 20px">
+                                <option disabled>Выберите категорию</option>
+                                <option value="antioxidant">Антиоксидант</option>
+                                <option value="flavor">Ароматизаторы</option>
+                                <option value="anti_caking_agent">Вещества против слеживания</option>
+                                <option value="moisture_retaining_agent">Влагоудерживающие агенты</option>
+                                <option value="wax">Воски</option>
+                                <option value="thickener">Загустители</option>
+                                <option value="complexing_agent">Комплексообразователи</option>
+                                <option value="preservative">Консерванты</option>
+                                <option value="colorant">Красители</option>
+                                <option value="frother">Пенообразователи</option>
+                                <option value="sweetener">Подсластители</option>
+                                <option value="baking_powder">Разрыхлители</option>
+                                <option value="acidity_regulator">Регуляторы кислотности</option>
+                                <option value="stabilizer">Стабилизаторы</option>
+                                <option value="texturator">Текстураторы</option>
+                                <option value="amplifiers">Усилители вкуса и аромата</option>
+                                <option value="color_retainer">Фиксаторы окраски</option>
+                                <option value="emulsifier">Эмульгаторы</option>
+                            </select>
+                            <select class="choice-box" name="danger" style="margin: 20px 20px 0 20px">
+                                <option disabled>Выберите уровень опасности</option>
+                                <option value="very_low">Очень низкая</option>
+                                <option value="low">Низкая</option>
+                                <option value="middle">Средняя</option>
+                                <option value="high">Высокая</option>
+                            </select>
+                            <select class="choice-box" name="origin" style="margin: 20px 20px 0 20px">
+                                <option disabled>Выберите происхождение</option>
+                                <option value="animal">Животное</option>
+                                <option value="vegetable">Растительное</option>
+                                <option value="artificial">Искуственное</option>
+                                <option value="synthetic">Синтетическое</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success float-right">Добавить</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

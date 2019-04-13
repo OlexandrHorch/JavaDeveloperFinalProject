@@ -1,2 +1,2 @@
 #Run it
-nohup java -jar supplements.jar --spring.profiles.active=prod &
+nohup java -jar additives.jar --spring.profiles.active=prod &

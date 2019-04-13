@@ -2,7 +2,7 @@
 mvn clean package -Dmaven.test.skip=true
 
 #Remove obsolete jar
-rm supplements.jar
+rm additives.jar
 
 #Copy jar
-cp ./target/supplements.jar supplements.jar
+cp ./target/additives.jar additives.jar

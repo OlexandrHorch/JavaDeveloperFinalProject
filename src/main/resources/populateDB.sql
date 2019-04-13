@@ -3,8 +3,8 @@
 
 USE nutritional_supplements;
 
--- Filling in table "supplement"
-INSERT INTO supplement (e_cod, name, other_names, category, danger, origin, using_info, harm, benefit, general_info, legislation) VALUES
+-- Filling in table "additive"
+INSERT INTO additive (e_cod, name, other_names, category, danger, origin, using_info, harm, benefit, general_info, legislation) VALUES
 	('Е100',
 		'Куркумины',
 		'куркумин, куркума, экстракт куркумы, Е100, экстракт турмерика, turmeric, curcumin, Е 100, E 100, порошок куркумы, куркуму',
