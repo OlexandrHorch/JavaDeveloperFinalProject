@@ -1,24 +1,24 @@
 -- Data base for final project "Nutritional additives"
 -- Creating database and tables
 
-CREATE DATABASE nutritional_supplements;
-USE nutritional_supplements;
+CREATE DATABASE additives;
+USE additives;
 
 -- table additive
 CREATE TABLE additive	(id INT(10) AUTO_INCREMENT,
 						e_cod VARCHAR(10),
-						name VARCHAR(50),
+						name VARCHAR(200),
 						other_names VARCHAR(2000),
-						category ENUM('antioxidant', 'flavor', 'anti_caking_agent', 'moisture_retaining_agent', 'wax',
+						category ENUM('not_assigned','antioxidant', 'flavor', 'anti_caking_agent', 'moisture_retaining_agent', 'wax',
 							'thickener', 'complexing_agent', 'preservative', 'colorant', 'frother', 'sweetener', 'baking_powder',
                             'acidity_regulator', 'stabilizer', 'texturator', 'amplifiers', 'color_retainer', 'emulsifier'),
-						danger ENUM('very_low','low','middle','high'),
-						origin ENUM('animal','vegetable','artificial','synthetic'),
+						danger ENUM('not_assigned','zero','very_low','low','middle','high','very_high'),
+						origin ENUM('not_assigned','animal','vegetable','natural','artificial','synthetic','microbiological'),
 						using_info BLOB(5000),
-						harm VARCHAR(3000),
-						benefit VARCHAR(3000),
-						general_info VARCHAR(5000),
-						legislation VARCHAR(3000),
+						harm BLOB(5000),
+						benefit BLOB(5000),
+						general_info BLOB(5000),
+						legislation BLOB(5000),
 						PRIMARY KEY (id));
 
 -- table user
@@ -54,8 +54,8 @@ CREATE TABLE product 	(id INT(10) AUTO_INCREMENT,
 						producing_factory VARCHAR(200),
 						producing_country VARCHAR(50),
 						composition VARCHAR(3000),
-						e_supplements VARCHAR(200),
-						other_supplements VARCHAR(500),
+						e_additives VARCHAR(200),
+						other_additives VARCHAR(500),
 						term_and_conditions_storage VARCHAR(3000),
                         product_weight FLOAT(10),
 						protein FLOAT(10),
@@ -68,9 +68,9 @@ CREATE TABLE product 	(id INT(10) AUTO_INCREMENT,
 
 
 -- table additive and product
-CREATE TABLE supplement_product	(id INT(10) AUTO_INCREMENT,
-								supplement_id INT(10) NOT NULL,
+CREATE TABLE additive_product	(id INT(10) AUTO_INCREMENT,
+								additive_id INT(10) NOT NULL,
 								product_id INT(10) NOT NULL,
 								PRIMARY KEY (id),
-								FOREIGN KEY (supplement_id) REFERENCES additive (id),
+								FOREIGN KEY (additive_id) REFERENCES additive (id),
 								FOREIGN KEY (product_id) REFERENCES product (id));
