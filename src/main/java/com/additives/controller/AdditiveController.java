@@ -87,6 +87,12 @@ public class AdditiveController {
         Additive additive = additiveService.getAdditive(id);
         model.addAttribute("additive", additive);
 
+        String title = additive.getECod() + " (" + additive.getName() + ") - описание и свойства добавки";
+        String description = title;
+
+        model.addAttribute("title", title);
+        model.addAttribute("description", description);
+
         model.addAttribute("user", userService.getUser());
 
         return "additive";

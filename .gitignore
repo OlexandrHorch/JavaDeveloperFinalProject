@@ -29,3 +29,6 @@
 
 #Maven cache
 .mvn
+
+#Production config
+/src/main/resources/application-prod.properties
