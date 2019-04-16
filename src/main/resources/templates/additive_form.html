@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments :: head"></head>
 <body>
@@ -11,22 +11,25 @@
         <div class="col-sm-12 pt-sm-2">
             <form action="#" th:action="@{/additive/change}" th:object="${additive}" method="post">
                 <div class="card">
-                    <div class="card-header bg-success" style="color: white;">Пищевая добавка</div>
+                    <div class="card-header bg-success h5" style="color: white;">Редактирование пищевой добавки</div>
 
                     <div class="card-body">
                         <div class="form-group mb-3">
-                            <input class="form-control form-control-sm" type="text" th:field="*{eCod}">
+                            <label for="eCod" class="h5">Код добавки</label>
+                            <input class="form-control form-control-sm" type="text" id="eCod" th:field="*{eCod}">
                         </div>
                         <div class="form-group mb-3">
-                            <input class="form-control form-control-sm" type="text" th:field="*{name}">
+                            <label for="inputName" class="h5">Имя добавки</label>
+                            <input class="form-control form-control-sm" type="text" id="inputName" th:field="*{name}">
                         </div>
                         <div class="form-group mb-3">
-                            <input class="form-control form-control-sm" type="text" th:field="*{otherNames}">
+                            <label for="othersName" class="h5">Другие имена добавки</label>
+                            <input class="form-control form-control-sm" type="text" id="othersName" th:field="*{otherNames}">
                         </div>
                         <div class="form-row mb-3">
                             <div class="form-group col-md-4">
-                                <label>Категория добавки</label>
-                                <select class="form-control" th:field="*{category}">
+                                <label for="category" class="h5">Категория добавки</label>
+                                <select class="form-control" id="category" th:field="*{category}">
                                     <option th:each="cat : ${T(com.additives.entity.AdditiveCategory).values()}"
                                             th:value="${cat}"
                                             th:text="${cat.description}">
@@ -34,8 +37,8 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Опасность</label>
-                                <select class="form-control" th:field="*{danger}">
+                                <label for="danger" class="h5">Опасность</label>
+                                <select class="form-control" id="danger" th:field="*{danger}">
                                     <option th:each="dan : ${T(com.additives.entity.AdditiveDanger).values()}"
                                             th:value="${dan}"
                                             th:text="${dan.description}">
@@ -43,8 +46,8 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Происхождение</label>
-                                <select class="form-control" th:field="*{origin}">
+                                <label for="origin" class="h5">Происхождение</label>
+                                <select class="form-control" id="origin" th:field="*{origin}">
                                     <option th:each="orig : ${T(com.additives.entity.AdditiveOrigin).values()}"
                                             th:value="${orig}"
                                             th:text="${orig.description}">
@@ -53,29 +56,37 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Общая информация</label>
-                            <textarea class="form-control form-control-sm" type="text" th:field="*{generalInfo}"></textarea>
+                            <label for="generalInfo" class="h5">Общая информация</label>
+                            <textarea class="form-control form-control-sm" aria-label="With textarea" id="generalInfo" th:field="*{generalInfo}"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm h4 text-center">Влияние на организм</div>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" aria-label="With textarea" id="benefit" name="benefit" placeholder="Введите пользу добавки"></textarea>
+                            <label for="benefit">Польза</label>
+                            <textarea class="form-control form-control-sm" aria-label="With textarea" id="benefit" th:field="*{benefit}"></textarea>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" aria-label="With textarea" id="usingInfo" name="usingInfo" placeholder="Введите информацию об использовании"></textarea>
+                            <label for="harm">Вред</label>
+                            <textarea class="form-control form-control-sm" aria-label="With textarea" id="harm" th:field="*{harm}"></textarea>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" aria-label="With textarea" id="legislation" name="generalInfo" placeholder="Введите описание добавки"></textarea>
+                            <label for="usingInfo" class="h5">Информация об использовании</label>
+                            <textarea class="form-control form-control-sm" aria-label="With textarea" id="usingInfo" th:field="*{usingInfo}"></textarea>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" aria-label="With textarea" id="generalInfo" name="generalInfo" placeholder="Введите данные связанные с законодательством"></textarea>
+                            <label for="legislation" class="h5">Информация о законодательстве</label>
+                            <textarea class="form-control form-control-sm" aria-label="With textarea" id="legislation" th:field="*{legislation}"></textarea>
                         </div>
-                <input type="hidden" th:value="${additive.id}" name="id" />
+
+                <input type="hidden" th:value="${additive.id}" name="id">
                 <div class="submit">
-                    <button type="submit" class="btn btn-primary" name="save" th:text="Сохранить">Сохранить</button>
+                    <button type="submit" class="btn btn-success float-right" name="save" th:text="Сохранить">Сохранить</button>
                 </div>
             </div>
         </div>
     </form>
-</div>
+    </div>
     </div>
 </div>
 
