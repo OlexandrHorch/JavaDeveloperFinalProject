@@ -26,7 +26,7 @@
             <div class="row mb-2">
 
                 <!--Category-->
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-4 col-lg-2">
                     <div class="form-group">
                         <label for="additiveCategory">Категория</label>
                         <select id="additiveCategory" name="additiveCategory" class="form-control form-control-sm">
@@ -93,10 +93,10 @@
             th:text="${searchRequest == null ? 'Все пищевые добавки' : 'Результаты поиска'}"></h1>
 
         <div class="card-body">
-            <div class="row justify-content-center">
+            <div class="row justify-content-around">
                 <div th:each="additive:${additives}">
                     <div class="card-deck m-2 ">
-                    <div class="card mr-sm-2 mt-sm-4 ml-sm-2" style="width: 20rem; height: 20rem;">
+                    <div class="card mr-sm-2 mt-sm-4 ml-sm-2" style="width: 20rem; height: 21rem;">
                         <div th:if="${additive.danger.name() == 'high'} or ${additive.danger.name() == 'very_high'}">
                             <div class="card-header bg-danger"
                                  th:utext="'<b>' + ${additive.eCod} + ' - ' + ${additive.name} + '</b>'"></div>
@@ -128,7 +128,7 @@
                                 </li>
                             </ul>
                             <a th:href="'/get-additive/'+${additive.id}"
-                               class="btn btn-primary float-right my-3">Подробнее</a>
+                               class="btn btn-primary float-right my-3 m-2">Подробнее</a>
                         </div>
                     </div>
                     </div>
