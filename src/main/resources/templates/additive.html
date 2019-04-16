@@ -36,8 +36,8 @@
                 <div class="row no-gutters mx-4">
                     <div class="col-sm">
                         <div class="mx-4 mt-3 h2 text-success"><span class="card-text" th:text="${additive.eCod}"></span></div>
-                        <div class="mx-4 mt-3 h4"><span class="card-text" th:text="${additive.name}"></span></div>
-                        <div class="mx-4 mt-3"><span class="card-text" th:text="${additive.otherNames}"></span></div>
+                        <div class="mx-4 mt-3 h4"><span class="card-text" th:text="${(additive.name != null) ? additive.name.replace('#', ', ') : ''}"></span></div>
+                        <div class="mx-4 mt-3"><span class="card-text" th:text="${(additive.otherNames != null) ? additive.otherNames.replace('#', ', ') : ''}"></span></div>
                         <div class="mx-4 mt-3 font-weight-bold">Происхождение: <span class="card-text font-weight-normal" th:text="${additive.origin.getDescription()}"></span></div>
                         <div class="mx-4 mt-3 font-weight-bold">Категория: <span class="card-text font-weight-normal" th:text="${additive.category.getDescription()}"></span></div>
                         <div class="mx-4 mt-3 font-weight-bold">Опасность: <span class="card-text font-weight-normal" th:text="${additive.danger.getDescription()}"></span></div>

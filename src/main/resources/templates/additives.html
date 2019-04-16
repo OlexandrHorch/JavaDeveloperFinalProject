@@ -93,10 +93,9 @@
             th:text="${searchRequest == null ? 'Все пищевые добавки' : 'Результаты поиска'}"></h1>
 
         <div class="card-body">
-            <div class="row justify-content-center">
-                <div th:each="additive:${additives}">
-                    <div class="card-deck m-2 ">
-                    <div class="card mr-sm-2 mt-sm-4 ml-sm-2" style="width: 20rem; height: 20rem;">
+            <div class="row">
+                <div th:each="additive:${additives}" class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card mt-sm-4" style="height: 20rem;">
                         <div th:if="${additive.danger.name() == 'high'} or ${additive.danger.name() == 'very_high'}">
                             <div class="card-header bg-danger"
                                  th:utext="'<b>' + ${additive.eCod} + ' - ' + ${additive.name} + '</b>'"></div>
@@ -111,17 +110,17 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
+                                <li class="list-group-item pl-0 pr-0">
                                     <b>Происхождение: </b>
                                         <a th:href="'/?additiveOrigin=' + ${additive.origin.name()}"
                                            th:text="${additive.origin.getDescription()}"></a>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item pl-0 pr-0">
                                     <b>Категория: </b>
                                         <a th:href="'/?additiveCategory=' + ${additive.category.name()}"
                                            th:text="${additive.category.getDescription()}"></a>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item pl-0 pr-0">
                                     <b>Опасность: </b>
                                     <a th:href="'/?additiveDanger=' + ${additive.danger.name()}"
                                        th:text="${additive.danger.getDescription()}"></a>
@@ -130,7 +129,6 @@
                             <a th:href="'/get-additive/'+${additive.id}"
                                class="btn btn-primary float-right my-3">Подробнее</a>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
